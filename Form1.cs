@@ -27,14 +27,17 @@ namespace ShutdownAlarmApp
 
         }
 
-        private void ShutdownButton(object sender, EventArgs e)
-        {
-            Console.WriteLine("Shutdown Interface was Loaded");
-        }
-
-        private void AlarmButton(object sender, EventArgs e)
+        public void LoadAlarmInterface(object sender, EventArgs e)
         {
             Console.WriteLine("Alarm Interface was Loaded");
+            this.alarm_panel.Visible = true;
+            this.shutdown_panel.Visible = false;
+        }
+
+        public void LoadShutdownInterface(object sender, EventArgs e)
+        {
+            this.alarm_panel.Visible = false;
+            this.shutdown_panel.Visible = true;
         }
     }
 }
