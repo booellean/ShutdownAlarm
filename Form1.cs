@@ -39,5 +39,10 @@ namespace ShutdownAlarmApp
             this.alarm_panel.Visible = false;
             this.shutdown_panel.Visible = true;
         }
+
+        private void menu_panel_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
     }
 }
