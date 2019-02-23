@@ -12,8 +12,7 @@ namespace ShutdownAlarmApp
 {
     public partial class ShutdownAlarm : Form
     {
-        private int x = Cursor.Position.X;
-        private int y = Cursor.Position.Y;
+        private int amount = 10;
 
         public ShutdownAlarm()
         {
@@ -51,25 +50,64 @@ namespace ShutdownAlarmApp
         private void ChangeMouseCursor(object sender, MouseEventArgs e)
         {
             //Top Left Corner and Bottom Right Corner of Document
-            if (((e.X >= 0 && e.X < 5) && (e.Y >= 0 && e.Y < 5)) || ((e.X >= (this.Width - 5) && e.X <= this.Width) && (e.Y >= (this.Height - 5) && e.Y <= this.Height)))
+            if ((this.IsLeft(e.X) && this.IsTop(e.Y)) || (this.IsRight(e.X) && IsBottom(e.Y)))
             {
                 Cursor.Current = Cursors.SizeNWSE;
             }
             //Top and Bottom of Document
-            if (((e.X > 5 && e.X < (this.Width - 5)) && (e.Y >= 0 && e.Y < 5)) || ((e.X > 5 && e.X < (this.Width - 5)) && (e.Y >= (this.Height - 5) && e.Y <= this.Height)))
+            if ((this.IsMiddleX(e.X) && (this.IsTop(e.Y))) || (this.IsMiddleX(e.X) && (this.IsBottom(e.Y))))
             {
                 Cursor.Current = Cursors.SizeNS;
             }
             //Sides of Document
-            if (((e.X >= 0 && e.X < 5) && (e.Y >= 5 && e.Y <= (this.Height - 5))) || ((e.X >= (this.Width - 5) && e.X <= this.Width) && (e.Y >= 5 && e.Y <= (this.Height - 5))))
+            if ((this.IsRight(e.X) && this.IsMiddleY(e.Y)) || ((this.IsLeft(e.X) && this.IsMiddleY(e.Y))))
             {
                 Cursor.Current = Cursors.SizeWE;
             }
             //Top Right Corner and Bottom Left Corner of Document
-            if (((e.X >= (this.Width - 5) && e.X <= this.Width) && (e.Y >= 0 && e.Y < 5)) || ((e.X >= 0 && e.X < 5) && (e.Y >= (this.Height - 5) && e.Y <= this.Height)))
+            if ((this.IsRight(e.X) && this.IsTop(e.Y)) || (this.IsLeft(e.X) && IsBottom(e.Y)))
             {
                 Cursor.Current = Cursors.SizeNESW;
             }
+        }
+
+        private bool IsTop(int y){
+            if (y >= 0 && y < amount) return true;
+
+            return false;
+        }
+
+        private bool IsBottom(int y)
+        {
+            if (y >= (this.Height - amount) && y <= this.Height) return true;
+
+            return false;
+        }
+
+        private bool IsLeft(int x)
+        {
+            if (x >= 0 && x < amount) return true;
+
+            return false;
+        }
+
+        private bool IsRight(int x)
+        {
+            if (x >= (this.Width - amount) && x <= this.Width) return true;
+
+            return false;
+        }
+        private bool IsMiddleX(int x)
+        {
+            if (x > amount && x < (this.Width - amount)) return true;
+
+            return false;
+        }
+        private bool IsMiddleY(int y)
+        {
+            if (y >= amount && y <= (this.Height - amount)) return true;
+
+            return false;
         }
     }
 }
