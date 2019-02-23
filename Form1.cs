@@ -60,6 +60,11 @@ namespace ShutdownAlarmApp
             {
                 Cursor.Current = Cursors.SizeNS;
             }
+            //Sides of Document
+            if (((e.X >= 0 && e.X < 5) && (e.Y >= 5 && e.Y <= (this.Height - 5))) || ((e.X >= (this.Width - 5) && e.X <= this.Width) && (e.Y >= 5 && e.Y <= (this.Height - 5))))
+            {
+                Cursor.Current = Cursors.SizeWE;
+            }
             //Top Right Corner and Bottom Left Corner of Document
             if (((e.X >= (this.Width - 5) && e.X <= this.Width) && (e.Y >= 0 && e.Y < 5)) || ((e.X >= 0 && e.X < 5) && (e.Y >= (this.Height - 5) && e.Y <= this.Height)))
             {
