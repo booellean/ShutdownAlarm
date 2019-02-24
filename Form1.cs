@@ -43,6 +43,7 @@ namespace ShutdownAlarmApp
 
         private void ChangeMouseCursor(object sender, MouseEventArgs e)
         {
+            this.textBoxDynamic.Text = string.Format("X: {0}, Y: {1}, Location: {2}, Button: {3}, Top {4}, Right: {5}, Left: {6}, Bottom: {7}", e.X, e.Y, e.Location, Cursor.Position, this.Top, this.Right, this.Left, this.Bottom); //This logs the x and y position of mouseclick
             //Top Left Corner and Bottom Right Corner of Document
             if ((this.IsLeft(e.X) && this.IsTop(e.Y)) || (this.IsRight(e.X) && IsBottom(e.Y)))
             {
@@ -53,13 +54,12 @@ namespace ShutdownAlarmApp
             {
                 Cursor.Current = Cursors.SizeNS;
 
-                this.textBoxDynamic.Text = string.Format("X: {0}, Y: {1}, Location: {2}, Button: {3}, Top {4}, Right: {5}, Left: {6}, Bottom: {7}", e.X, e.Y, e.Location, Cursor.Position, this.Top, this.Right, this.Left, this.Bottom); //This logs the x and y position of mouseclick
-
                 if (e.Button == MouseButtons.Left)
                 {
                     this.diffY = Cursor.Position.Y - this.Top;
-                    this.textBoxDynamic.Text = string.Format("{0}", sender);
+                    this.textBoxDynamic.Text = string.Format("difference: {0}, Cursor: {1}, Top: {2}", this.diffY, Cursor.Position.Y, this.Top);
                     this.Height = this.Height + this.diffY;
+                    this.Top = this.Top - this.diffY;
                 }
             }
             //Sides of Document
