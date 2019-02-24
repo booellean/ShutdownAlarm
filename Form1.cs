@@ -13,6 +13,8 @@ namespace ShutdownAlarmApp
     public partial class ShutdownAlarm : Form
     {
         private int amount = 10;
+        private int diffX;
+        private int diffY;
 
         public ShutdownAlarm()
         {
@@ -24,10 +26,7 @@ namespace ShutdownAlarmApp
 
         }
 
-        private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
+        //Aesthetic Changing functions
 
         public void LoadAlarmInterface(object sender, EventArgs e)
         {
@@ -42,11 +41,6 @@ namespace ShutdownAlarmApp
             this.shutdown_panel.Visible = true;
         }
 
-        private void ResizeAndMoveContainer(object sender, MouseEventArgs e)
-        {
-            this.textBoxDynamic.Text = string.Format("X: {0}, Y: {1}, Location: {2}, Button: {3}, Top {4}, Right: {5}, Left: {6}, Bottom: {7}", e.X, e.Y, e.Location, Cursor.Position, this.Top, this.Right, this.Left, this.Bottom); //This logs the x and y position of mouseclick
-        }
-
         private void ChangeMouseCursor(object sender, MouseEventArgs e)
         {
             //Top Left Corner and Bottom Right Corner of Document
@@ -58,6 +52,15 @@ namespace ShutdownAlarmApp
             if ((this.IsMiddleX(e.X) && (this.IsTop(e.Y))) || (this.IsMiddleX(e.X) && (this.IsBottom(e.Y))))
             {
                 Cursor.Current = Cursors.SizeNS;
+
+                this.textBoxDynamic.Text = string.Format("X: {0}, Y: {1}, Location: {2}, Button: {3}, Top {4}, Right: {5}, Left: {6}, Bottom: {7}", e.X, e.Y, e.Location, Cursor.Position, this.Top, this.Right, this.Left, this.Bottom); //This logs the x and y position of mouseclick
+
+                if (e.Button == MouseButtons.Left)
+                {
+                    this.diffY = Cursor.Position.Y - this.Top;
+                    this.textBoxDynamic.Text = string.Format("{0}", sender);
+                    this.Height = this.Height + this.diffY;
+                }
             }
             //Sides of Document
             if ((this.IsRight(e.X) && this.IsMiddleY(e.Y)) || ((this.IsLeft(e.X) && this.IsMiddleY(e.Y))))
@@ -70,6 +73,13 @@ namespace ShutdownAlarmApp
                 Cursor.Current = Cursors.SizeNESW;
             }
         }
+
+        private void MoveContainer(object sender, MouseEventArgs e)
+        {
+
+        }
+
+        //methods for returning values
 
         private bool IsTop(int y){
             if (y >= 0 && y < amount) return true;
