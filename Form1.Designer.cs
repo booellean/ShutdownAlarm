@@ -37,12 +37,9 @@ namespace ShutdownAlarmApp
             this.textBoxDynamic = new System.Windows.Forms.TextBox();
             this.textBoxStatic = new System.Windows.Forms.TextBox();
             this.container_panel = new System.Windows.Forms.Panel();
-            this.main_app = new System.Windows.Forms.SplitContainer();
             this.alarm_panel = new System.Windows.Forms.Panel();
             this.menu_panel.SuspendLayout();
             this.shutdown_panel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.main_app)).BeginInit();
-            this.main_app.SuspendLayout();
             this.SuspendLayout();
             // 
             // shutdown_button
@@ -124,15 +121,6 @@ namespace ShutdownAlarmApp
             this.container_panel.Size = new System.Drawing.Size(0, 0);
             this.container_panel.TabIndex = 1;
             // 
-            // main_app
-            // 
-            this.main_app.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.main_app.BackColor = System.Drawing.SystemColors.ActiveBorder;
-            this.main_app.Location = new System.Drawing.Point(42, 19);
-            this.main_app.Name = "main_app";
-            this.main_app.Size = new System.Drawing.Size(54, 0);
-            this.main_app.TabIndex = 2;
-            // 
             // alarm_panel
             // 
             this.alarm_panel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -155,19 +143,17 @@ namespace ShutdownAlarmApp
             this.Controls.Add(this.alarm_panel);
             this.Controls.Add(this.menu_panel);
             this.Controls.Add(this.container_panel);
-            this.Controls.Add(this.main_app);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.MinimumSize = new System.Drawing.Size(652, 501);
             this.Name = "ShutdownAlarm";
             this.Text = "Shutdown";
             this.Load += new System.EventHandler(this.ShutdownAlarm_Load);
-            this.MouseClick += new System.Windows.Forms.MouseEventHandler(this.MoveContainer);
+            this.MouseClick += new System.Windows.Forms.MouseEventHandler(this.MoveOrResizeContainer);
+            this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MoveContainer);
             this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.ChangeMouseCursor);
             this.menu_panel.ResumeLayout(false);
             this.shutdown_panel.ResumeLayout(false);
             this.shutdown_panel.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.main_app)).EndInit();
-            this.main_app.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -180,7 +166,6 @@ namespace ShutdownAlarmApp
         private System.Windows.Forms.Panel menu_panel;
         private System.Windows.Forms.Panel shutdown_panel;
         private System.Windows.Forms.Panel container_panel;
-        private System.Windows.Forms.SplitContainer main_app;
         private System.Windows.Forms.Panel alarm_panel;
         private System.Windows.Forms.TextBox textBoxStatic;
         private System.Windows.Forms.TextBox textBoxDynamic;
