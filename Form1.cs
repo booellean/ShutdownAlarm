@@ -63,6 +63,15 @@ namespace ShutdownAlarmApp
                     //this.Height = this.Height + this.diffY;
                     //this.Top = Cursor.Position.Y;
                 //}
+
+                this.textBoxDynamic.Text = string.Format("X: {0}, Y: {1}, Location: {2}, Button: {3}, Top {4}, Right: {5}, Left: {6}, Bottom: {7}", e.X, e.Y, e.Location, Cursor.Position, this.Top, this.Right, this.Left, this.Bottom); //This logs the x and y position of mouseclick
+
+                if (e.Button == MouseButtons.Left)
+                {
+                    this.diffY = Cursor.Position.Y - this.Top;
+                    this.textBoxDynamic.Text = string.Format("{0}", sender);
+                    this.Height = this.Height + this.diffY;
+                }
             }
             //Sides of Document
             if ((this.IsRight(e.X) && this.IsMiddleY(e.Y)) || ((this.IsLeft(e.X) && this.IsMiddleY(e.Y))))
@@ -137,7 +146,7 @@ namespace ShutdownAlarmApp
         private void MoveContainer(object sender, MouseEventArgs e)
         {
             //while(this.mouseDown)
-            {
+            //{
                 if (this.IsMiddleX(e.X) && ((e.Y >= amount) && (e.Y < 30)))
                 {
                     this.Top = Cursor.Position.Y;

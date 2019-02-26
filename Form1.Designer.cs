@@ -40,7 +40,6 @@ namespace ShutdownAlarmApp
             this.alarm_panel = new System.Windows.Forms.Panel();
             this.menu_panel.SuspendLayout();
             this.shutdown_panel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.container_panel)).BeginInit();
             this.SuspendLayout();
             // 
             // shutdown_button
@@ -78,7 +77,7 @@ namespace ShutdownAlarmApp
             this.menu_panel.Controls.Add(this.alarm_button);
             this.menu_panel.Location = new System.Drawing.Point(12, 25);
             this.menu_panel.Name = "menu_panel";
-            this.menu_panel.Size = new System.Drawing.Size(249, 673);
+            this.menu_panel.Size = new System.Drawing.Size(249, 464);
             this.menu_panel.TabIndex = 1;
             // 
             // shutdown_panel
@@ -91,7 +90,7 @@ namespace ShutdownAlarmApp
             this.shutdown_panel.Controls.Add(this.textBoxStatic);
             this.shutdown_panel.Location = new System.Drawing.Point(271, 25);
             this.shutdown_panel.Name = "shutdown_panel";
-            this.shutdown_panel.Size = new System.Drawing.Size(658, 673);
+            this.shutdown_panel.Size = new System.Drawing.Size(370, 464);
             this.shutdown_panel.TabIndex = 0;
             // 
             // textBoxDynamic
@@ -111,13 +110,13 @@ namespace ShutdownAlarmApp
             // 
             // container_panel
             // 
-            this.container_panel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
+            this.container_panel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.container_panel.AutoSize = true;
             this.container_panel.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.container_panel.BackColor = System.Drawing.SystemColors.ActiveBorder;
-            this.container_panel.Location = new System.Drawing.Point(1, 1);
+            this.container_panel.Location = new System.Drawing.Point(0, 47);
             this.container_panel.Name = "container_panel";
             this.container_panel.Size = new System.Drawing.Size(0, 0);
             this.container_panel.TabIndex = 1;
@@ -130,7 +129,7 @@ namespace ShutdownAlarmApp
             this.alarm_panel.BackColor = System.Drawing.Color.Maroon;
             this.alarm_panel.Location = new System.Drawing.Point(271, 25);
             this.alarm_panel.Name = "alarm_panel";
-            this.alarm_panel.Size = new System.Drawing.Size(658, 672);
+            this.alarm_panel.Size = new System.Drawing.Size(370, 463);
             this.alarm_panel.TabIndex = 3;
             // 
             // ShutdownAlarm
@@ -139,7 +138,7 @@ namespace ShutdownAlarmApp
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.BackColor = System.Drawing.SystemColors.AppWorkspace;
-            this.ClientSize = new System.Drawing.Size(940, 710);
+            this.ClientSize = new System.Drawing.Size(652, 501);
             this.Controls.Add(this.shutdown_panel);
             this.Controls.Add(this.alarm_panel);
             this.Controls.Add(this.menu_panel);
