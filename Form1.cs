@@ -127,9 +127,9 @@ namespace ShutdownAlarmApp
             {
                 if (e.Button == MouseButtons.Left)
                 {
-                    //this.diffY = Cursor.Position.Y - this.originalY;
-                    //this.Height = this.Height + this.diffY;
-                    //this.Top = Cursor.Position.Y;
+                    this.diffY = Cursor.Position.Y - this.originalY;
+                    this.Height = this.Height + this.diffY;
+                    this.Top = Cursor.Position.Y;
                 }
             }
         }
