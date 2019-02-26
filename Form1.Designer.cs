@@ -40,6 +40,7 @@ namespace ShutdownAlarmApp
             this.alarm_panel = new System.Windows.Forms.Panel();
             this.menu_panel.SuspendLayout();
             this.shutdown_panel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.container_panel)).BeginInit();
             this.SuspendLayout();
             // 
             // shutdown_button
