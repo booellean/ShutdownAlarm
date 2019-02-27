@@ -15,9 +15,9 @@ namespace ShutdownAlarmApp
         private int amount = 10;
         private int diffX;
         private int diffY;
-        private int originalY = 0;
-        private int originalX = 0;
-        private bool mouseDown = false;
+        private int yPos;
+        private int xPos;
+        private Timer loopTimer;
 
         public ShutdownAlarm()
         {
@@ -46,7 +46,9 @@ namespace ShutdownAlarmApp
 
         private void ChangeMouseCursor(object sender, MouseEventArgs e)
         {
-            //this.textBoxDynamic.Text = string.Format("X: {0}, Y: {1}, Location: {2}, Button: {3}, Top {4}, Right: {5}, Left: {6}, Bottom: {7}", e.X, e.Y, e.Location, Cursor.Position, this.Top, this.Right, this.Left, this.Bottom); //This logs the x and y position of mouseclick
+            this.xPos = Cursor.Position.X;
+            this.yPos = Cursor.Position.Y;
+
             //Top Left Corner and Bottom Right Corner of Document
             if ((this.IsLeft(e.X) && this.IsTop(e.Y)) || (this.IsRight(e.X) && IsBottom(e.Y)))
             {
@@ -56,21 +58,18 @@ namespace ShutdownAlarmApp
             if ((this.IsMiddleX(e.X) && (this.IsTop(e.Y))) || (this.IsMiddleX(e.X) && (this.IsBottom(e.Y))))
             {
                 Cursor.Current = Cursors.SizeNS;
-                this.textBoxDynamic.Text = string.Format("button: {3}, difference: {0}, Cursor: {1}, Top: {2}", this.diffY, Cursor.Position.Y, this.originalY, e.Button);
                 //if (e.Button == MouseButtons.Left)
                 //{
-                    //this.diffY = Cursor.Position.Y - this.originalY;
+                    //this.diffY = Cursor.Position.Y - somethingElse;
                     //this.Height = this.Height + this.diffY;
                     //this.Top = Cursor.Position.Y;
                 //}
 
-                this.textBoxDynamic.Text = string.Format("X: {0}, Y: {1}, Location: {2}, Button: {3}, Top {4}, Right: {5}, Left: {6}, Bottom: {7}", e.X, e.Y, e.Location, Cursor.Position, this.Top, this.Right, this.Left, this.Bottom); //This logs the x and y position of mouseclick
-
                 if (e.Button == MouseButtons.Left)
                 {
-                    this.diffY = Cursor.Position.Y - this.Top;
+                    //this.diffY = Cursor.Position.Y - this.Top;
                     this.textBoxDynamic.Text = string.Format("{0}", sender);
-                    this.Height = this.Height + this.diffY;
+                    //this.Height = this.Height + this.diffY;
                 }
             }
             //Sides of Document
@@ -128,19 +127,21 @@ namespace ShutdownAlarmApp
 
         private void MoveOrResizeContainer(object sender, MouseEventArgs e)
         {
-            this.originalY = this.Top;
-            this.originalX = this.Left;
-
             //Top and Bottom of Document
-                if ((this.IsMiddleX(e.X) && (this.IsTop(e.Y))) || (this.IsMiddleX(e.X) && (this.IsBottom(e.Y))))
-            {
-                if (e.Button == MouseButtons.Left)
-                {
-                    this.diffY = Cursor.Position.Y - this.originalY;
-                    this.Height = this.Height + this.diffY;
-                    this.Top = Cursor.Position.Y;
-                }
-            }
+            //if ((this.IsMiddleX(e.X) && (this.IsTop(e.Y))) || (this.IsMiddleX(e.X) && (this.IsBottom(e.Y))))
+            //{
+            //while (this.mouseDown == true)
+            //{
+                this.Height = this.Height + this.diffY;
+                this.SetDesktopLocation(this.xPos, this.yPos);
+            //}
+            //if (e.Button == MouseButtons.Left)
+            //{
+            //this.diffY = Cursor.Position.Y - somethingElse;
+
+
+                //}
+                //}
         }
 
         private void MoveContainer(object sender, MouseEventArgs e)
@@ -149,9 +150,24 @@ namespace ShutdownAlarmApp
             //{
                 if (this.IsMiddleX(e.X) && ((e.Y >= amount) && (e.Y < 30)))
                 {
-                    this.Top = Cursor.Position.Y;
+                    //this.Top = Cursor.Position.Y;
                 }
             //}
+        }
+        //Start getting the timer to work
+        private void MouseUpChange(object sender, MouseEventArgs e)
+        {
+            loopTimer.Stop();
+
+        }
+        private void MouseDownChange(object sender, MouseEventArgs e)
+        {
+            loopTimer.Enabled = true;
+            loopTimer.Start();
+        }
+        private void loopTimer_Tick(object sender, EventArgs e)
+        {
+            this.textBoxDynamic.Text = string.Format("Loop Timer is working!");
         }
     }
 }

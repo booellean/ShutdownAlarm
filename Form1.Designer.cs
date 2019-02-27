@@ -110,8 +110,8 @@ namespace ShutdownAlarmApp
             // 
             // container_panel
             // 
-            this.container_panel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-            | System.Windows.Forms.AnchorStyles.Left)
+            this.container_panel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.container_panel.AutoSize = true;
             this.container_panel.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
@@ -148,9 +148,10 @@ namespace ShutdownAlarmApp
             this.Name = "ShutdownAlarm";
             this.Text = "Shutdown";
             this.Load += new System.EventHandler(this.ShutdownAlarm_Load);
-            this.MouseClick += new System.Windows.Forms.MouseEventHandler(this.MoveOrResizeContainer);
-            this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MoveContainer);
+            this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MoveOrResizeContainer);
+            this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MouseDownChange);
             this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.ChangeMouseCursor);
+            this.MouseUp += new System.Windows.Forms.MouseEventHandler(this.MouseUpChange);
             this.menu_panel.ResumeLayout(false);
             this.shutdown_panel.ResumeLayout(false);
             this.shutdown_panel.PerformLayout();
