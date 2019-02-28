@@ -30,6 +30,7 @@ namespace ShutdownAlarmApp
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.shutdown_button = new System.Windows.Forms.Button();
             this.alarm_button = new System.Windows.Forms.Button();
             this.menu_panel = new System.Windows.Forms.Panel();
@@ -38,6 +39,7 @@ namespace ShutdownAlarmApp
             this.textBoxStatic = new System.Windows.Forms.TextBox();
             this.container_panel = new System.Windows.Forms.Panel();
             this.alarm_panel = new System.Windows.Forms.Panel();
+            this.loopTimer = new System.Windows.Forms.Timer(this.components);
             this.menu_panel.SuspendLayout();
             this.shutdown_panel.SuspendLayout();
             this.SuspendLayout();
@@ -132,6 +134,10 @@ namespace ShutdownAlarmApp
             this.alarm_panel.Size = new System.Drawing.Size(370, 463);
             this.alarm_panel.TabIndex = 3;
             // 
+            // loopTimer
+            // 
+            this.loopTimer.Tick += new System.EventHandler(this.InitiateMoveAndResizeEvents);
+            // 
             // ShutdownAlarm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -170,6 +176,7 @@ namespace ShutdownAlarmApp
         private System.Windows.Forms.Panel alarm_panel;
         private System.Windows.Forms.TextBox textBoxStatic;
         private System.Windows.Forms.TextBox textBoxDynamic;
+        private System.Windows.Forms.Timer loopTimer;
     }
 }
 

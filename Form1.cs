@@ -17,7 +17,7 @@ namespace ShutdownAlarmApp
         private int diffY;
         private int yPos;
         private int xPos;
-        private Timer loopTimer;
+        //private Timer loopTimer;
 
         public ShutdownAlarm()
         {
@@ -155,19 +155,20 @@ namespace ShutdownAlarmApp
             //}
         }
         //Start getting the timer to work
-        private void MouseUpChange(object sender, MouseEventArgs e)
-        {
-            loopTimer.Stop();
 
+        private void InitiateMoveAndResizeEvents(object sender, EventArgs e)
+        {
+            this.textBoxDynamic.Text = string.Format("Loop Timer is working!");
         }
         private void MouseDownChange(object sender, MouseEventArgs e)
         {
             loopTimer.Enabled = true;
             loopTimer.Start();
         }
-        private void loopTimer_Tick(object sender, EventArgs e)
+        private void MouseUpChange(object sender, MouseEventArgs e)
         {
-            this.textBoxDynamic.Text = string.Format("Loop Timer is working!");
+            loopTimer.Stop();
+            this.textBoxDynamic.Text = string.Format("Loop Timer Just stopped!");
         }
     }
 }
