@@ -46,8 +46,6 @@ namespace ShutdownAlarmApp
 
         private void ChangeMouseCursor(object sender, MouseEventArgs e)
         {
-            this.xPos = Cursor.Position.X;
-            this.yPos = Cursor.Position.Y;
 
             //Top Left Corner and Bottom Right Corner of Document
             if ((this.IsLeft(e.X) && this.IsTop(e.Y)) || (this.IsRight(e.X) && IsBottom(e.Y)))
@@ -132,8 +130,6 @@ namespace ShutdownAlarmApp
             //{
             //while (this.mouseDown == true)
             //{
-                this.Height = this.Height + this.diffY;
-                this.SetDesktopLocation(this.xPos, this.yPos);
             //}
             //if (e.Button == MouseButtons.Left)
             //{
@@ -158,10 +154,23 @@ namespace ShutdownAlarmApp
 
         private void InitiateMoveAndResizeEvents(object sender, EventArgs e)
         {
-            this.textBoxDynamic.Text = string.Format("Loop Timer is working!");
+            this.textBoxDynamic.Text = string.Format("X:{0}, Y:{1}, PrevX: {2}, PrevY: {3}", this.xPos, this.yPos, Cursor.Position.X, Cursor.Position.Y);
+            this.Top = this.Top + (Cursor.Position.Y - this.yPos);
+            this.Left = this.Left + (Cursor.Position.X - this.xPos);
+
+            //Reset the previous coordinates at end after changes
+            this.xPos = Cursor.Position.X;
+            this.yPos = Cursor.Position.Y;
+            //this.Height = this.Height + this.diffY;
+            //this.SetDesktopLocation(this.xPos, this.yPos);
+            //this.textBoxDynamic.Text = string.Format("Loop Timer is working!");
         }
         private void MouseDownChange(object sender, MouseEventArgs e)
-        {
+        {   
+            //Set the previous coordinates before the timer starts
+            this.xPos = Cursor.Position.X;
+            this.yPos = Cursor.Position.Y;
+            //start the timer
             loopTimer.Enabled = true;
             loopTimer.Start();
         }
