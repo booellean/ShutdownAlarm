@@ -17,7 +17,8 @@ namespace ShutdownAlarmApp
         private int diffY;
         private int yPos;
         private int xPos;
-        //private Timer loopTimer;
+        private int yRelPos;
+        private int xRelPos;
 
         public ShutdownAlarm()
         {
@@ -139,24 +140,16 @@ namespace ShutdownAlarmApp
                 //}
                 //}
         }
-
-        private void MoveContainer(object sender, MouseEventArgs e)
-        {
-            //while(this.mouseDown)
-            //{
-                if (this.IsMiddleX(e.X) && ((e.Y >= amount) && (e.Y < 30)))
-                {
-                    //this.Top = Cursor.Position.Y;
-                }
-            //}
-        }
         //Start getting the timer to work
 
         private void InitiateMoveAndResizeEvents(object sender, EventArgs e)
-        {
-            this.textBoxDynamic.Text = string.Format("X:{0}, Y:{1}, PrevX: {2}, PrevY: {3}", this.xPos, this.yPos, Cursor.Position.X, Cursor.Position.Y);
-            this.Top = this.Top + (Cursor.Position.Y - this.yPos);
-            this.Left = this.Left + (Cursor.Position.X - this.xPos);
+        {   
+            this.textBoxDynamic.Text = string.Format("X:{0}, Y:{1}, PrevX: {2}, PrevY: {3}", this.xRelPos, this.yRelPos, Cursor.Position.X, Cursor.Position.Y);
+
+            //Move only if mouse click position is in upper bar
+            if(IsMiddleX(this.xRelPos) && (this.yRelPos >= amount && this.yRelPos < 23)){
+                this.SetDesktopLocation(this.Left + (Cursor.Position.X - this.xPos), this.Top + (Cursor.Position.Y - this.yPos));
+            }
 
             //Reset the previous coordinates at end after changes
             this.xPos = Cursor.Position.X;
@@ -166,10 +159,13 @@ namespace ShutdownAlarmApp
             //this.textBoxDynamic.Text = string.Format("Loop Timer is working!");
         }
         private void MouseDownChange(object sender, MouseEventArgs e)
-        {   
+        {
             //Set the previous coordinates before the timer starts
             this.xPos = Cursor.Position.X;
             this.yPos = Cursor.Position.Y;
+            //Position of mouse relative to Panels
+            this.xRelPos = e.Location.X;
+            this.yRelPos = e.Location.Y;
             //start the timer
             loopTimer.Enabled = true;
             loopTimer.Start();

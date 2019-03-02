@@ -136,6 +136,7 @@ namespace ShutdownAlarmApp
             // 
             // loopTimer
             // 
+            this.loopTimer.Interval = 10;
             this.loopTimer.Tick += new System.EventHandler(this.InitiateMoveAndResizeEvents);
             // 
             // ShutdownAlarm
@@ -154,7 +155,6 @@ namespace ShutdownAlarmApp
             this.Name = "ShutdownAlarm";
             this.Text = "Shutdown";
             this.Load += new System.EventHandler(this.ShutdownAlarm_Load);
-            this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MoveOrResizeContainer);
             this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MouseDownChange);
             this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.ChangeMouseCursor);
             this.MouseUp += new System.Windows.Forms.MouseEventHandler(this.MouseUpChange);
