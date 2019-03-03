@@ -136,7 +136,7 @@ namespace ShutdownAlarmApp
             // 
             // loopTimer
             // 
-            this.loopTimer.Interval = 10;
+            this.loopTimer.Interval = 1;
             this.loopTimer.Tick += new System.EventHandler(this.InitiateMoveAndResizeEvents);
             // 
             // ShutdownAlarm

@@ -148,15 +148,60 @@ namespace ShutdownAlarmApp
 
             //Move only if mouse click position is in upper bar
             if(IsMiddleX(this.xRelPos) && (this.yRelPos >= amount && this.yRelPos < 23)){
+                Cursor.Current = Cursors.Arrow;
                 this.SetDesktopLocation(this.Left + (Cursor.Position.X - this.xPos), this.Top + (Cursor.Position.Y - this.yPos));
+            }
+            else
+            {
+                //Top Left Corner
+                if ((this.IsLeft(this.xRelPos) && this.IsTop(this.yRelPos)))
+                {
+                    Cursor.Current = Cursors.SizeNWSE;
+                    this.Height = this.Height + (Cursor.Position.Y - this.yPos);
+                    this.Width = this.Width + (Cursor.Position.X - this.xPos);
+                }
+                //Bottom Right Corner of Document
+                if ((this.IsRight(this.xRelPos) && IsBottom(this.yRelPos)))
+                {
+                    this.Height = this.Height + (Cursor.Position.Y - this.yPos);
+                    this.Width = this.Width + (Cursor.Position.X - this.xPos);
+                    Cursor.Current = Cursors.SizeNWSE;
+                }
+                //Top of Document
+                if ((this.IsMiddleX(this.xRelPos) && (this.IsTop(this.yRelPos))))
+                {
+                    Cursor.Current = Cursors.SizeNS;
+                }
+                //Bottom of Document
+                if ((this.IsMiddleX(this.xRelPos) && (this.IsBottom(this.yRelPos))))
+                {
+                    Cursor.Current = Cursors.SizeNS;
+                }
+                //Right Side of Document
+                if ((this.IsRight(this.xRelPos) && this.IsMiddleY(this.yRelPos)))
+                {
+                    Cursor.Current = Cursors.SizeWE;
+                }
+                //Left Side of Document
+                if (((this.IsLeft(this.xRelPos) && this.IsMiddleY(this.yRelPos))))
+                {
+                    Cursor.Current = Cursors.SizeWE;
+                }
+                //Top Right Corner of Document
+                if ((this.IsRight(this.xRelPos) && this.IsTop(this.yRelPos)))
+                {
+                    Cursor.Current = Cursors.SizeNESW;
+                }
+                //Bottom Left Corner of Document
+                if ((this.IsLeft(this.xRelPos) && IsBottom(this.yRelPos)))
+                {
+                    Cursor.Current = Cursors.SizeNESW;
+                }
             }
 
             //Reset the previous coordinates at end after changes
             this.xPos = Cursor.Position.X;
             this.yPos = Cursor.Position.Y;
-            //this.Height = this.Height + this.diffY;
-            //this.SetDesktopLocation(this.xPos, this.yPos);
-            //this.textBoxDynamic.Text = string.Format("Loop Timer is working!");
         }
         private void MouseDownChange(object sender, MouseEventArgs e)
         {
