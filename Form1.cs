@@ -149,7 +149,7 @@ namespace ShutdownAlarmApp
             //Move only if mouse click position is in upper bar
             if(IsMiddleX(this.xRelPos) && (this.yRelPos >= amount && this.yRelPos < 23)){
                 Cursor.Current = Cursors.Arrow;
-                this.SetDesktopLocation(this.Left + (Cursor.Position.X - this.xPos), this.Top + (Cursor.Position.Y - this.yPos));
+                this.SetDesktopLocation(this.Location.X + (Cursor.Position.X - this.xPos), this.Location.Y + (Cursor.Position.Y - this.yPos));
             }
             else
             {
@@ -159,13 +159,14 @@ namespace ShutdownAlarmApp
                     Cursor.Current = Cursors.SizeNWSE;
                     this.Height = this.Height - (Cursor.Position.Y - this.yPos);
                     this.Width = this.Width - (Cursor.Position.X - this.xPos);
+                    this.SetDesktopLocation(this.Location.X + (Cursor.Position.X - this.xPos), this.Location.Y + (Cursor.Position.Y - this.yPos));
                 }
                 //Bottom Right Corner of Document
                 if ((this.IsRight(this.xRelPos) && IsBottom(this.yRelPos)))
                 {
+                    Cursor.Current = Cursors.SizeNWSE;
                     this.Height = this.Height + (Cursor.Position.Y - this.yPos);
                     this.Width = this.Width + (Cursor.Position.X - this.xPos);
-                    Cursor.Current = Cursors.SizeNWSE;
                 }
                 //Top of Document
                 if ((this.IsMiddleX(this.xRelPos) && (this.IsTop(this.yRelPos))))
