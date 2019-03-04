@@ -136,14 +136,14 @@ namespace ShutdownAlarmApp
             // 
             // loopTimer
             // 
-            this.loopTimer.Interval = 1;
+            this.loopTimer.Interval = 10;
             this.loopTimer.Tick += new System.EventHandler(this.InitiateMoveAndResizeEvents);
             // 
             // ShutdownAlarm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.AutoSize = true;
+            this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BackColor = System.Drawing.SystemColors.AppWorkspace;
             this.ClientSize = new System.Drawing.Size(652, 501);
             this.Controls.Add(this.shutdown_panel);

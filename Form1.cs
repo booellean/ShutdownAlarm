@@ -144,7 +144,7 @@ namespace ShutdownAlarmApp
 
         private void InitiateMoveAndResizeEvents(object sender, EventArgs e)
         {   
-            this.textBoxDynamic.Text = string.Format("X:{0}, Y:{1}, PrevX: {2}, PrevY: {3}", this.xRelPos, this.yRelPos, Cursor.Position.X, Cursor.Position.Y);
+            this.textBoxDynamic.Text = string.Format("X:{0}, Y:{1}, PrevX: {2}, PrevY: {3}", (Cursor.Position.X - this.xPos), (Cursor.Position.Y - this.yPos), Cursor.Position.X, Cursor.Position.Y);
 
             //Move only if mouse click position is in upper bar
             if(IsMiddleX(this.xRelPos) && (this.yRelPos >= amount && this.yRelPos < 23)){
@@ -157,8 +157,8 @@ namespace ShutdownAlarmApp
                 if ((this.IsLeft(this.xRelPos) && this.IsTop(this.yRelPos)))
                 {
                     Cursor.Current = Cursors.SizeNWSE;
-                    this.Height = this.Height + (Cursor.Position.Y - this.yPos);
-                    this.Width = this.Width + (Cursor.Position.X - this.xPos);
+                    this.Height = this.Height - (Cursor.Position.Y - this.yPos);
+                    this.Width = this.Width - (Cursor.Position.X - this.xPos);
                 }
                 //Bottom Right Corner of Document
                 if ((this.IsRight(this.xRelPos) && IsBottom(this.yRelPos)))
