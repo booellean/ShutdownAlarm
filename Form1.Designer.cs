@@ -148,9 +148,7 @@ namespace ShutdownAlarmApp
             this.Name = "ShutdownAlarm";
             this.Text = "Shutdown";
             this.Load += new System.EventHandler(this.ShutdownAlarm_Load);
-            this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MouseDownChange);
             this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.ChangeMouseCursor);
-            this.MouseUp += new System.Windows.Forms.MouseEventHandler(this.MouseUpChange);
             this.menu_panel.ResumeLayout(false);
             this.shutdown_panel.ResumeLayout(false);
             this.shutdown_panel.PerformLayout();
