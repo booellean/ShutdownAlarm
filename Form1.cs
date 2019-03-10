@@ -30,14 +30,49 @@ namespace ShutdownAlarmApp
 
         }
 
-        //Reset Functionality for BorderLess Form
+        // Reset Functionality for BorderLess Form
+        // Original code derrived from Sunsetquest
+        // 2015/07/03
+        // https://stackoverflow.com/questions/31199437/borderless-and-resizable-form-c
+        // obtained on 2019/03/09
         protected override void WndProc(ref Message m)
         {
             switch (m.Msg)
             {
                 case 0x0084/*NCHITTEST*/ :
                     base.WndProc(ref m);
-                    textBoxDynamic.Text = "The Form has been read";
+                    if ((int)m.Result == 0x01/*HTCLIENT*/)
+                    {
+                        Point screenPoint = new Point(m.LParam.ToInt32());
+                        Point clientPoint = this.PointToClient(screenPoint);
+                        if (clientPoint.Y <= AMOUNT)
+                        {
+                            if (clientPoint.X <= AMOUNT)
+                                m.Result = (IntPtr)13/*HTTOPLEFT*/ ;
+                            else if (clientPoint.X < (Size.Width - AMOUNT))
+                                m.Result = (IntPtr)12/*HTTOP*/ ;
+                            else
+                                m.Result = (IntPtr)14/*HTTOPRIGHT*/ ;
+                        }
+                        else if (clientPoint.Y <= (Size.Height - AMOUNT))
+                        {
+                            if (clientPoint.X <= AMOUNT)
+                                m.Result = (IntPtr)10/*HTLEFT*/ ;
+                            else if (clientPoint.X < (Size.Width - AMOUNT))
+                                m.Result = (IntPtr)2/*HTCAPTION*/ ;
+                            else
+                                m.Result = (IntPtr)11/*HTRIGHT*/ ;
+                        }
+                        else
+                        {
+                            if (clientPoint.X <= AMOUNT)
+                                m.Result = (IntPtr)16/*HTBOTTOMLEFT*/ ;
+                            else if (clientPoint.X < (Size.Width - AMOUNT))
+                                m.Result = (IntPtr)15/*HTBOTTOM*/ ;
+                            else
+                                m.Result = (IntPtr)17/*HTBOTTOMRIGHT*/ ;
+                        }
+                    }
                     return;
             }
             base.WndProc(ref m);
