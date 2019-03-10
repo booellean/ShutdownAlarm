@@ -30,6 +30,19 @@ namespace ShutdownAlarmApp
 
         }
 
+        //Reset Functionality for BorderLess Form
+        protected override void WndProc(ref Message m)
+        {
+            switch (m.Msg)
+            {
+                case 0x0084/*NCHITTEST*/ :
+                    base.WndProc(ref m);
+                    textBoxDynamic.Text = "The Form has been read";
+                    return;
+            }
+            base.WndProc(ref m);
+        }
+
         //Aesthetic Changing functions
 
         public void LoadAlarmInterface(object sender, EventArgs e)

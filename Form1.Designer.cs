@@ -22,6 +22,8 @@ namespace ShutdownAlarmApp
             base.Dispose(disposing);
         }
 
+
+
         #region Windows Form Designer generated code
 
         /// <summary>
@@ -168,5 +170,6 @@ namespace ShutdownAlarmApp
         private System.Windows.Forms.TextBox textBoxStatic;
         private System.Windows.Forms.TextBox textBoxDynamic;
     }
+
 }
 
