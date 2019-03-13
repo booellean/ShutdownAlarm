@@ -40,6 +40,9 @@ namespace ShutdownAlarmApp
             this.textBoxStatic = new System.Windows.Forms.TextBox();
             this.container_panel = new System.Windows.Forms.Panel();
             this.alarm_panel = new System.Windows.Forms.Panel();
+            this.closePanel = new System.Windows.Forms.Panel();
+            this.maxPanel = new System.Windows.Forms.Panel();
+            this.minPanel = new System.Windows.Forms.Panel();
             this.menu_panel.SuspendLayout();
             this.shutdown_panel.SuspendLayout();
             this.SuspendLayout();
@@ -133,6 +136,33 @@ namespace ShutdownAlarmApp
             this.alarm_panel.Size = new System.Drawing.Size(370, 463);
             this.alarm_panel.TabIndex = 3;
             // 
+            // closePanel
+            // 
+            this.closePanel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.closePanel.BackColor = System.Drawing.Color.DarkRed;
+            this.closePanel.Location = new System.Drawing.Point(632, 2);
+            this.closePanel.Name = "closePanel";
+            this.closePanel.Size = new System.Drawing.Size(20, 17);
+            this.closePanel.TabIndex = 4;
+            // 
+            // maxPanel
+            // 
+            this.maxPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.maxPanel.BackColor = System.Drawing.Color.LightCoral;
+            this.maxPanel.Location = new System.Drawing.Point(606, 2);
+            this.maxPanel.Name = "maxPanel";
+            this.maxPanel.Size = new System.Drawing.Size(20, 17);
+            this.maxPanel.TabIndex = 5;
+            // 
+            // minPanel
+            // 
+            this.minPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.minPanel.BackColor = System.Drawing.Color.Lime;
+            this.minPanel.Location = new System.Drawing.Point(580, 2);
+            this.minPanel.Name = "minPanel";
+            this.minPanel.Size = new System.Drawing.Size(20, 17);
+            this.minPanel.TabIndex = 6;
+            // 
             // ShutdownAlarm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -140,6 +170,9 @@ namespace ShutdownAlarmApp
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BackColor = System.Drawing.SystemColors.AppWorkspace;
             this.ClientSize = new System.Drawing.Size(652, 501);
+            this.Controls.Add(this.minPanel);
+            this.Controls.Add(this.maxPanel);
+            this.Controls.Add(this.closePanel);
             this.Controls.Add(this.shutdown_panel);
             this.Controls.Add(this.alarm_panel);
             this.Controls.Add(this.menu_panel);
@@ -167,6 +200,9 @@ namespace ShutdownAlarmApp
         private System.Windows.Forms.Panel alarm_panel;
         private System.Windows.Forms.TextBox textBoxStatic;
         private System.Windows.Forms.TextBox textBoxDynamic;
+        private System.Windows.Forms.Panel closePanel;
+        private System.Windows.Forms.Panel maxPanel;
+        private System.Windows.Forms.Panel minPanel;
     }
 
 }
