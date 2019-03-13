@@ -87,5 +87,19 @@ namespace ShutdownAlarmApp
             this.shutdown_panel.Visible = true;
         }
 
+        private void CloseForm(object sender, EventArgs e)
+        {
+            Close();
+        }
+
+        private void MaximizeForm(object sender, EventArgs e)
+        {
+            WindowState = FormWindowState.Maximized;
+        }
+
+        private void MinimizeForm(object sender, EventArgs e)
+        {
+            WindowState = FormWindowState.Minimized;
+        }
     }
 }

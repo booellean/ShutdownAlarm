@@ -144,6 +144,7 @@ namespace ShutdownAlarmApp
             this.closePanel.Name = "closePanel";
             this.closePanel.Size = new System.Drawing.Size(20, 17);
             this.closePanel.TabIndex = 4;
+            this.closePanel.Click += new System.EventHandler(this.CloseForm);
             // 
             // maxPanel
             // 
@@ -153,6 +154,7 @@ namespace ShutdownAlarmApp
             this.maxPanel.Name = "maxPanel";
             this.maxPanel.Size = new System.Drawing.Size(20, 17);
             this.maxPanel.TabIndex = 5;
+            this.maxPanel.Click += new System.EventHandler(this.MaximizeForm);
             // 
             // minPanel
             // 
@@ -162,6 +164,7 @@ namespace ShutdownAlarmApp
             this.minPanel.Name = "minPanel";
             this.minPanel.Size = new System.Drawing.Size(20, 17);
             this.minPanel.TabIndex = 6;
+            this.minPanel.Click += new System.EventHandler(this.MinimizeForm);
             // 
             // ShutdownAlarm
             // 
