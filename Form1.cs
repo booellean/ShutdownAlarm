@@ -13,12 +13,6 @@ namespace ShutdownAlarmApp
     public partial class ShutdownAlarm : Form
     {
         const int AMOUNT = 10;
-        private int diffX;
-        private int diffY;
-        private int yPos;
-        private int xPos;
-        private int yRelPos;
-        private int xRelPos;
 
         public ShutdownAlarm()
         {
@@ -93,50 +87,5 @@ namespace ShutdownAlarmApp
             this.shutdown_panel.Visible = true;
         }
 
-        private void ChangeMouseCursor(object sender, MouseEventArgs e)
-        {
-
-        }
-
-        //methods for returning values
-
-        private bool IsTop(int y){
-            if (y >= 0 && y < AMOUNT) return true;
-
-            return false;
-        }
-
-        private bool IsBottom(int y)
-        {
-            if (y >= (this.Height - AMOUNT) && y <= this.Height) return true;
-
-            return false;
-        }
-
-        private bool IsLeft(int x)
-        {
-            if (x >= 0 && x < AMOUNT) return true;
-
-            return false;
-        }
-
-        private bool IsRight(int x)
-        {
-            if (x >= (this.Width - AMOUNT) && x <= this.Width) return true;
-
-            return false;
-        }
-        private bool IsMiddleX(int x)
-        {
-            if (x > AMOUNT && x < (this.Width - AMOUNT)) return true;
-
-            return false;
-        }
-        private bool IsMiddleY(int y)
-        {
-            if (y >= AMOUNT && y <= (this.Height - AMOUNT)) return true;
-
-            return false;
-        }
     }
 }
