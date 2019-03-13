@@ -67,7 +67,6 @@ namespace ShutdownAlarmApp
             this.alarm_button.Text = "Alarm";
             this.alarm_button.UseVisualStyleBackColor = true;
             this.alarm_button.Click += new System.EventHandler(this.LoadAlarmInterface);
-            this.alarm_button.MouseMove += new System.Windows.Forms.MouseEventHandler(this.ChangeMouseCursor);
             // 
             // menu_panel
             // 
@@ -150,7 +149,6 @@ namespace ShutdownAlarmApp
             this.Name = "ShutdownAlarm";
             this.Text = "Shutdown";
             this.Load += new System.EventHandler(this.ShutdownAlarm_Load);
-            this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.ChangeMouseCursor);
             this.menu_panel.ResumeLayout(false);
             this.shutdown_panel.ResumeLayout(false);
             this.shutdown_panel.PerformLayout();
