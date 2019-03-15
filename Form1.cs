@@ -111,6 +111,18 @@ namespace ShutdownAlarmApp
         {
             WindowState = FormWindowState.Minimized;
         }
+
+        private void HoursCharCheck(object sender, KeyPressEventArgs e)
+        {
+            if (!(Char.IsDigit(e.KeyChar) || (e.KeyChar == (char)Keys.Back)))
+                e.Handled = true;
+        }
+
+        private void MinutesCharCheck(object sender, KeyPressEventArgs e)
+        {
+            if (!(Char.IsDigit(e.KeyChar) || (e.KeyChar == (char)Keys.Back)))
+                e.Handled = true;
+        }
     }
 }
 //this.textBoxDynamic.Text = String.Format("x: {0} y: {1} Width: {2} Height: {3}", this.leftPOS, this.topPOS, this.winWidth, this.winHeight);
