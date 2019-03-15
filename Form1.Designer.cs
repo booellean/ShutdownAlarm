@@ -92,7 +92,7 @@ namespace ShutdownAlarmApp
             this.shutdown_panel.BackColor = System.Drawing.Color.LightGreen;
             this.shutdown_panel.Controls.Add(this.textBoxDynamic);
             this.shutdown_panel.Controls.Add(this.textBoxStatic);
-            this.shutdown_panel.Location = new System.Drawing.Point(271, 25);
+            this.shutdown_panel.Location = new System.Drawing.Point(271, 24);
             this.shutdown_panel.Name = "shutdown_panel";
             this.shutdown_panel.Size = new System.Drawing.Size(370, 464);
             this.shutdown_panel.TabIndex = 0;
@@ -135,6 +135,7 @@ namespace ShutdownAlarmApp
             this.alarm_panel.Name = "alarm_panel";
             this.alarm_panel.Size = new System.Drawing.Size(370, 463);
             this.alarm_panel.TabIndex = 3;
+            this.alarm_panel.Visible = false;
             // 
             // closePanel
             // 

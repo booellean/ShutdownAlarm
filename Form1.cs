@@ -13,6 +13,7 @@ namespace ShutdownAlarmApp
     public partial class ShutdownAlarm : Form
     {
         const int AMOUNT = 10;
+        private bool MAX = false;
 
         public ShutdownAlarm()
         {
@@ -94,7 +95,16 @@ namespace ShutdownAlarmApp
 
         private void MaximizeForm(object sender, EventArgs e)
         {
-            WindowState = FormWindowState.Maximized;
+            if (this.MAX == false)
+            {
+                WindowState = FormWindowState.Maximized;
+                this.MAX = true;
+            }
+            else
+            {
+                WindowState = FormWindowState.Normal;
+                this.MAX = false;
+            }
         }
 
         private void MinimizeForm(object sender, EventArgs e)
@@ -103,3 +113,4 @@ namespace ShutdownAlarmApp
         }
     }
 }
+//this.textBoxDynamic.Text = String.Format("x: {0} y: {1} Width: {2} Height: {3}", this.leftPOS, this.topPOS, this.winWidth, this.winHeight);
