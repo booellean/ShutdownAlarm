@@ -36,15 +36,17 @@ namespace ShutdownAlarmApp
             this.alarm_button = new System.Windows.Forms.Button();
             this.menu_panel = new System.Windows.Forms.Panel();
             this.shutdown_panel = new System.Windows.Forms.Panel();
+            this.minutesSecond = new System.Windows.Forms.TextBox();
+            this.minutesFirst = new System.Windows.Forms.TextBox();
+            this.hoursSecond = new System.Windows.Forms.TextBox();
+            this.hoursFirst = new System.Windows.Forms.TextBox();
+            this.operations = new System.Windows.Forms.ComboBox();
             this.textBoxDynamic = new System.Windows.Forms.TextBox();
             this.container_panel = new System.Windows.Forms.Panel();
             this.alarm_panel = new System.Windows.Forms.Panel();
             this.closePanel = new System.Windows.Forms.Panel();
             this.maxPanel = new System.Windows.Forms.Panel();
             this.minPanel = new System.Windows.Forms.Panel();
-            this.operations = new System.Windows.Forms.ComboBox();
-            this.hours = new System.Windows.Forms.TextBox();
-            this.minutes = new System.Windows.Forms.TextBox();
             this.menu_panel.SuspendLayout();
             this.shutdown_panel.SuspendLayout();
             this.SuspendLayout();
@@ -92,14 +94,61 @@ namespace ShutdownAlarmApp
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.shutdown_panel.BackColor = System.Drawing.Color.LightGreen;
-            this.shutdown_panel.Controls.Add(this.minutes);
-            this.shutdown_panel.Controls.Add(this.hours);
+            this.shutdown_panel.Controls.Add(this.minutesSecond);
+            this.shutdown_panel.Controls.Add(this.minutesFirst);
+            this.shutdown_panel.Controls.Add(this.hoursSecond);
+            this.shutdown_panel.Controls.Add(this.hoursFirst);
             this.shutdown_panel.Controls.Add(this.operations);
             this.shutdown_panel.Controls.Add(this.textBoxDynamic);
             this.shutdown_panel.Location = new System.Drawing.Point(271, 24);
             this.shutdown_panel.Name = "shutdown_panel";
             this.shutdown_panel.Size = new System.Drawing.Size(370, 464);
             this.shutdown_panel.TabIndex = 0;
+            // 
+            // minutesSecond
+            // 
+            this.minutesSecond.Location = new System.Drawing.Point(158, 113);
+            this.minutesSecond.Name = "minutesSecond";
+            this.minutesSecond.Size = new System.Drawing.Size(27, 20);
+            this.minutesSecond.TabIndex = 6;
+            this.minutesSecond.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TimeCharCheck);
+            // 
+            // minutesFirst
+            // 
+            this.minutesFirst.Location = new System.Drawing.Point(125, 113);
+            this.minutesFirst.Name = "minutesFirst";
+            this.minutesFirst.Size = new System.Drawing.Size(27, 20);
+            this.minutesFirst.TabIndex = 5;
+            this.minutesFirst.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TimeCharCheck);
+            // 
+            // hoursSecond
+            // 
+            this.hoursSecond.Location = new System.Drawing.Point(81, 113);
+            this.hoursSecond.Name = "hoursSecond";
+            this.hoursSecond.Size = new System.Drawing.Size(27, 20);
+            this.hoursSecond.TabIndex = 4;
+            this.hoursSecond.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TimeCharCheck);
+            // 
+            // hoursFirst
+            // 
+            this.hoursFirst.Location = new System.Drawing.Point(47, 113);
+            this.hoursFirst.Name = "hoursFirst";
+            this.hoursFirst.Size = new System.Drawing.Size(28, 20);
+            this.hoursFirst.TabIndex = 3;
+            this.hoursFirst.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TimeCharCheck);
+            // 
+            // operations
+            // 
+            this.operations.FormattingEnabled = true;
+            this.operations.Items.AddRange(new object[] {
+            "Shutdown",
+            "Restart",
+            "Sleep",
+            "Hibernate"});
+            this.operations.Location = new System.Drawing.Point(42, 61);
+            this.operations.Name = "operations";
+            this.operations.Size = new System.Drawing.Size(287, 21);
+            this.operations.TabIndex = 2;
             // 
             // textBoxDynamic
             // 
@@ -163,35 +212,6 @@ namespace ShutdownAlarmApp
             this.minPanel.TabIndex = 6;
             this.minPanel.Click += new System.EventHandler(this.MinimizeForm);
             // 
-            // operations
-            // 
-            this.operations.FormattingEnabled = true;
-            this.operations.Items.AddRange(new object[] {
-            "Shutdown",
-            "Restart",
-            "Sleep",
-            "Hibernate"});
-            this.operations.Location = new System.Drawing.Point(42, 61);
-            this.operations.Name = "operations";
-            this.operations.Size = new System.Drawing.Size(287, 21);
-            this.operations.TabIndex = 2;
-            // 
-            // hours
-            // 
-            this.hours.Location = new System.Drawing.Point(47, 113);
-            this.hours.Name = "hours";
-            this.hours.Size = new System.Drawing.Size(48, 20);
-            this.hours.TabIndex = 3;
-            this.hours.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.HoursCharCheck);
-            // 
-            // minutes
-            // 
-            this.minutes.Location = new System.Drawing.Point(114, 113);
-            this.minutes.Name = "minutes";
-            this.minutes.Size = new System.Drawing.Size(48, 20);
-            this.minutes.TabIndex = 4;
-            this.minutes.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.MinutesCharCheck);
-            // 
             // ShutdownAlarm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -232,8 +252,10 @@ namespace ShutdownAlarmApp
         private System.Windows.Forms.Panel maxPanel;
         private System.Windows.Forms.Panel minPanel;
         private System.Windows.Forms.ComboBox operations;
-        private System.Windows.Forms.TextBox minutes;
-        private System.Windows.Forms.TextBox hours;
+        private System.Windows.Forms.TextBox hoursSecond;
+        private System.Windows.Forms.TextBox hoursFirst;
+        private System.Windows.Forms.TextBox minutesSecond;
+        private System.Windows.Forms.TextBox minutesFirst;
     }
 
 }
