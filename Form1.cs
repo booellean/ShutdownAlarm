@@ -14,6 +14,11 @@ namespace ShutdownAlarmApp
     {
         const int AMOUNT = 10;
         private bool MAX = false;
+        private bool initiate = false;
+
+        //Needed for countdown effect
+        string endString = "";
+        DateTime end;
 
         public ShutdownAlarm()
         {
@@ -149,6 +154,49 @@ namespace ShutdownAlarmApp
                     break;
             }
             SendKeys.Send("{TAB}");
+        }
+
+        private void Submit_Click(object sender, EventArgs e)
+        {
+            this.endString = dateTimePicker.Value.ToString("yyyy-MM-dd") + " " + this.hoursFirst.Text + this.hoursSecond.Text + ":" + this.minutesFirst.Text + this.minutesSecond.Text;
+            try
+            {
+                this.end = DateTime.ParseExact(endString, "yyyy-MM-dd HH:mm", System.Globalization.CultureInfo.InvariantCulture);
+            }
+            catch
+            {
+                this.countDownTimer.Text = "Unexpected Error: Can't Parse Date";
+            }
+            if (this.initiate == false)
+            {
+                this.initiateCountdown.Enabled = true;
+                this.initiate = true;
+                this.Submit.Text = "Cancel";
+            }
+            else
+            {
+                this.initiateCountdown.Enabled = false;
+                this.initiate = false;
+                this.countDownTimer.Text = "00:00:00";
+                this.Submit.Text = "Set";
+            }
+        }
+
+        private void CountDown(object sender, EventArgs e)
+        {
+            TimeSpan timeRemaining = this.end - DateTime.Now;
+            if(timeRemaining<TimeSpan.Zero)
+            {
+                //this.countDownTimer.Text = String.Format("end: {0}, Time Remaining: {1}", this.end, timeRemaining);
+                //this.countDownTimer.Text = String.Format("end: {0} start: {1} remaining: {1}", this.end, this.start, timeRemaining);
+                this.countDownTimer.Text = "00:00:00";
+                //this.countDownTimer.Text = "Time is not working";
+                this.initiateCountdown.Enabled = false;
+            }
+            else
+            {
+                this.countDownTimer.Text = String.Format("{0:hh\\:mm\\:ss}",timeRemaining);
+            }
         }
     }
 }
