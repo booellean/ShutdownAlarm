@@ -108,33 +108,41 @@ namespace ShutdownAlarmApp
             // minutesSecond
             // 
             this.minutesSecond.Location = new System.Drawing.Point(158, 113);
+            this.minutesSecond.MaxLength = 1;
             this.minutesSecond.Name = "minutesSecond";
             this.minutesSecond.Size = new System.Drawing.Size(27, 20);
             this.minutesSecond.TabIndex = 6;
+            this.minutesSecond.Text = "0";
             this.minutesSecond.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TimeCharCheck);
             // 
             // minutesFirst
             // 
             this.minutesFirst.Location = new System.Drawing.Point(125, 113);
+            this.minutesFirst.MaxLength = 1;
             this.minutesFirst.Name = "minutesFirst";
             this.minutesFirst.Size = new System.Drawing.Size(27, 20);
             this.minutesFirst.TabIndex = 5;
+            this.minutesFirst.Text = "0";
             this.minutesFirst.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TimeCharCheck);
             // 
             // hoursSecond
             // 
             this.hoursSecond.Location = new System.Drawing.Point(81, 113);
+            this.hoursSecond.MaxLength = 1;
             this.hoursSecond.Name = "hoursSecond";
             this.hoursSecond.Size = new System.Drawing.Size(27, 20);
             this.hoursSecond.TabIndex = 4;
+            this.hoursSecond.Text = "0";
             this.hoursSecond.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TimeCharCheck);
             // 
             // hoursFirst
             // 
             this.hoursFirst.Location = new System.Drawing.Point(47, 113);
+            this.hoursFirst.MaxLength = 1;
             this.hoursFirst.Name = "hoursFirst";
             this.hoursFirst.Size = new System.Drawing.Size(28, 20);
             this.hoursFirst.TabIndex = 3;
+            this.hoursFirst.Text = "0";
             this.hoursFirst.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TimeCharCheck);
             // 
             // operations

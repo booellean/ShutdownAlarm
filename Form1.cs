@@ -114,38 +114,39 @@ namespace ShutdownAlarmApp
 
         private void TimeCharCheck(object sender, KeyPressEventArgs e)
         {
-            if(sender == this.hoursFirst)
+            TextBox box = (TextBox)sender;
+
+            box.SelectAll();
+
+            if (box == this.hoursFirst)
             {
-                this.textBoxDynamic.Text = String.Format("the sender is this.hoursFirst!");
                 if (!((e.KeyChar == (char)Keys.D0 || e.KeyChar == (char)Keys.D1 || e.KeyChar == (char)Keys.D2) || (e.KeyChar == (char)Keys.NumPad0 || e.KeyChar == (char)Keys.NumPad1 || e.KeyChar == (char)Keys.NumPad2) || (e.KeyChar == (char)Keys.Back)))
                 {
                     e.Handled = true;
                 }
             }
-            if (sender == this.hoursSecond)
+            if (box == this.hoursSecond)
             {
-                this.textBoxDynamic.Text = String.Format("the sender is this.hoursSecond!");
                 if (!(Char.IsDigit(e.KeyChar) || (e.KeyChar == (char)Keys.Back)))
                 {
                     e.Handled = true;
                 }                   
             }
-            if (sender == this.minutesFirst)
+            if (box == this.minutesFirst)
             {
-                this.textBoxDynamic.Text = String.Format("the sender is this.minutesFirst!");
                 if (!(((e.KeyChar == (char)Keys.D0 || e.KeyChar == (char)Keys.D1 || e.KeyChar == (char)Keys.D2 || e.KeyChar == (char)Keys.D3 || e.KeyChar == (char)Keys.D4 || e.KeyChar == (char)Keys.D5) || ((e.KeyChar == (char)Keys.NumPad0 || e.KeyChar == (char)Keys.NumPad1 || e.KeyChar == (char)Keys.NumPad2 || e.KeyChar == (char)Keys.NumPad3 || e.KeyChar == (char)Keys.NumPad4 || e.KeyChar == (char)Keys.NumPad5)) || (e.KeyChar == (char)Keys.Back))))
                 {
                     e.Handled = true;
                 }
             }
-            if (sender == this.minutesSecond)
+            if (box == this.minutesSecond)
             {
-                this.textBoxDynamic.Text = String.Format("the sender is this.minutesSecond!");
                 if (!(Char.IsDigit(e.KeyChar) || (e.KeyChar == (char)Keys.Back)))
                 {
                     e.Handled = true;
                 }
-            }   
+            }
+            SendKeys.Send("{TAB}");
         }
     }
 }
