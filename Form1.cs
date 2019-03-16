@@ -118,33 +118,32 @@ namespace ShutdownAlarmApp
 
             box.SelectAll();
 
-            if (box == this.hoursFirst)
+            switch (box.Name)
             {
-                if (!((e.KeyChar == (char)Keys.D0 || e.KeyChar == (char)Keys.D1 || e.KeyChar == (char)Keys.D2) || (e.KeyChar == (char)Keys.NumPad0 || e.KeyChar == (char)Keys.NumPad1 || e.KeyChar == (char)Keys.NumPad2) || (e.KeyChar == (char)Keys.Back)))
-                {
-                    e.Handled = true;
-                }
-            }
-            if (box == this.hoursSecond)
-            {
-                if (!(Char.IsDigit(e.KeyChar) || (e.KeyChar == (char)Keys.Back)))
-                {
-                    e.Handled = true;
-                }                   
-            }
-            if (box == this.minutesFirst)
-            {
-                if (!(((e.KeyChar == (char)Keys.D0 || e.KeyChar == (char)Keys.D1 || e.KeyChar == (char)Keys.D2 || e.KeyChar == (char)Keys.D3 || e.KeyChar == (char)Keys.D4 || e.KeyChar == (char)Keys.D5) || ((e.KeyChar == (char)Keys.NumPad0 || e.KeyChar == (char)Keys.NumPad1 || e.KeyChar == (char)Keys.NumPad2 || e.KeyChar == (char)Keys.NumPad3 || e.KeyChar == (char)Keys.NumPad4 || e.KeyChar == (char)Keys.NumPad5)) || (e.KeyChar == (char)Keys.Back))))
-                {
-                    e.Handled = true;
-                }
-            }
-            if (box == this.minutesSecond)
-            {
-                if (!(Char.IsDigit(e.KeyChar) || (e.KeyChar == (char)Keys.Back)))
-                {
-                    e.Handled = true;
-                }
+                case "hoursFirst":
+                    if (!((e.KeyChar == (char)Keys.D0 || e.KeyChar == (char)Keys.D1 || e.KeyChar == (char)Keys.D2) || (e.KeyChar == (char)Keys.NumPad0 || e.KeyChar == (char)Keys.NumPad1 || e.KeyChar == (char)Keys.NumPad2) || (e.KeyChar == (char)Keys.Back)))
+                    {
+                        e.Handled = true;
+                    }
+                    break;
+                case "hoursSecond":
+                    if (!(Char.IsDigit(e.KeyChar) || (e.KeyChar == (char)Keys.Back)))
+                    {
+                        e.Handled = true;
+                    }
+                    break;
+                case "minutesFirst":
+                    if (!(((e.KeyChar == (char)Keys.D0 || e.KeyChar == (char)Keys.D1 || e.KeyChar == (char)Keys.D2 || e.KeyChar == (char)Keys.D3 || e.KeyChar == (char)Keys.D4 || e.KeyChar == (char)Keys.D5) || ((e.KeyChar == (char)Keys.NumPad0 || e.KeyChar == (char)Keys.NumPad1 || e.KeyChar == (char)Keys.NumPad2 || e.KeyChar == (char)Keys.NumPad3 || e.KeyChar == (char)Keys.NumPad4 || e.KeyChar == (char)Keys.NumPad5)) || (e.KeyChar == (char)Keys.Back))))
+                    {
+                        e.Handled = true;
+                    }
+                    break;
+                case "minutesSecond":
+                    if (!(Char.IsDigit(e.KeyChar) || (e.KeyChar == (char)Keys.Back)))
+                    {
+                        e.Handled = true;
+                    }
+                    break;
             }
             SendKeys.Send("{TAB}");
         }
