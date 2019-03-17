@@ -270,10 +270,18 @@ namespace ShutdownAlarmApp
                         System.Diagnostics.Process.Start("shutdown", "/s");
                         break;
                     case "Restart":
-                        System.Diagnostics.Process.Start("shutdown.exe", "-r -t 0");
+                        System.Diagnostics.Process.Start("shutdown.exe", "-r");
                         break;
                     case "Sleep":
-                        Application.SetSuspendState(PowerState.Suspend, true, true);
+                        //Try to put computer into sleep mode and, if it fails, hibernate
+                        try
+                        {
+                            Application.SetSuspendState(PowerState.Suspend, true, true);                           
+                        }
+                        catch
+                        {
+                            Application.SetSuspendState(PowerState.Hibernate, true, true);
+                        }
                         break;
                     case "Hibernate":
                         //Try to put computer into hibernate and, if it fails, put it to sleep
