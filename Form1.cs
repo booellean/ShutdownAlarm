@@ -20,9 +20,13 @@ namespace ShutdownAlarmApp
         private bool miltime = true;
         private string meridiem = "AM";
 
-        //Needed for countdown effect
+        //Variables for Countdown effect
         string endString = "";
         DateTime end;
+
+        //Responsive Colors and sizes determined for screen sizes
+        static Color activeColor = Color.FromArgb(216, 71, 158);
+        static Color passiveColor = Color.FromArgb(198, 198, 198);
 
         public ShutdownAlarm()
         {
@@ -165,7 +169,6 @@ namespace ShutdownAlarmApp
         {
             var box = (Label)sender;
             textBoxDynamic.Text = box.Text;
-            //TODO: Switch statement for click events and add AM or PM when time zone is standard
             switch (box.Text)
             {
                 case "Military":
@@ -184,19 +187,41 @@ namespace ShutdownAlarmApp
                     this.miltime = true;
                     break;
             }
-            this.ChangeTimeLabels(this.miltime, this.meridiem);
+            this.ChangeTimeLabelFunctions(this.miltime, this.meridiem);
         }
 
         //Method will change stylings and click events based on SetTimeFormat input
-        private void ChangeTimeLabels(bool time, string meridiem)
+        private void ChangeTimeLabelFunctions(bool time, string meridiem)
         {
             if(time)
             {
-                textBoxDynamic.Text = "Military time is true!";
+                //Remove click events for items
+                ChangeTimeLabelStyle(false, this.AM);
+                ChangeTimeLabelStyle(false, this.PM);
+                this.AM.Click -= new System.EventHandler(this.SetTimeFormat);
+                this.PM.Click -= new System.EventHandler(this.SetTimeFormat);
             }
             else
             {
-                textBoxDynamic.Text = "Military Time is false!";
+                //Add click events back for items
+                ChangeTimeLabelStyle(true, this.AM);
+                ChangeTimeLabelStyle(true, this.PM);
+                this.AM.Click += new System.EventHandler(this.SetTimeFormat);
+                this.PM.Click += new System.EventHandler(this.SetTimeFormat);
+            }
+        }
+ 
+        private void ChangeTimeLabelStyle(bool clickable, object element)
+        {
+            var el = (Label)element;
+            if (clickable)
+            {
+                el.ForeColor = activeColor;
+            }
+            else
+            {
+                el.ForeColor = passiveColor;
+
             }
         }
 

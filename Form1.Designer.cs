@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Drawing;
 
 namespace ShutdownAlarmApp
 {
@@ -21,8 +22,6 @@ namespace ShutdownAlarmApp
             }
             base.Dispose(disposing);
         }
-
-
 
         #region Windows Form Designer generated code
 
