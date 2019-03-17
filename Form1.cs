@@ -16,6 +16,10 @@ namespace ShutdownAlarmApp
         private bool MAX = false;
         private bool initiate = false;
 
+        //Time Input variables
+        private bool miltime = true;
+        private string meridiem = "AM";
+
         //Needed for countdown effect
         string endString = "";
         DateTime end;
@@ -125,6 +129,7 @@ namespace ShutdownAlarmApp
 
             switch (box.Name)
             {
+                //TODO: Change acceptable keys based on standard or military time
                 case "hoursFirst":
                     if (!((e.KeyChar == (char)Keys.D0 || e.KeyChar == (char)Keys.D1 || e.KeyChar == (char)Keys.D2) || (e.KeyChar == (char)Keys.NumPad0 || e.KeyChar == (char)Keys.NumPad1 || e.KeyChar == (char)Keys.NumPad2)))
                     {
@@ -156,12 +161,57 @@ namespace ShutdownAlarmApp
             SendKeys.Send("{TAB}");
         }
 
+        private void SetTimeFormat(object sender, EventArgs e)
+        {
+            var box = (Label)sender;
+            textBoxDynamic.Text = box.Text;
+            //TODO: Switch statement for click events and add AM or PM when time zone is standard
+            switch (box.Text)
+            {
+                case "Military":
+                    this.miltime = true;
+                    break;
+                case "Standard":
+                    this.miltime = false;
+                    break;
+                case "AM":
+                    this.meridiem = "AM";
+                    break;
+                case "PM":
+                    this.meridiem = "PM";
+                    break;
+                default:
+                    this.miltime = true;
+                    break;
+            }
+            this.ChangeTimeLabels(this.miltime, this.meridiem);
+        }
+
+        //Method will change stylings and click events based on SetTimeFormat input
+        private void ChangeTimeLabels(bool time, string meridiem)
+        {
+            if(time)
+            {
+                textBoxDynamic.Text = "Military time is true!";
+            }
+            else
+            {
+                textBoxDynamic.Text = "Military Time is false!";
+            }
+        }
+
         private void Submit_Click(object sender, EventArgs e)
         {
             this.endString = dateTimePicker.Value.ToString("yyyy-MM-dd") + " " + this.hoursFirst.Text + this.hoursSecond.Text + ":" + this.minutesFirst.Text + this.minutesSecond.Text;
             try
             {
                 this.end = DateTime.ParseExact(endString, "yyyy-MM-dd HH:mm", System.Globalization.CultureInfo.InvariantCulture);
+                //Check if the time is before now. If so, add a day, most likely are trying to shutdown at midnight
+                if (this.end < DateTime.Now)
+                {
+                    this.end = this.end.AddDays(1);
+                    //this.countDownTimer.Text = "This is reading I guess?";
+                }
             }
             catch
             {
@@ -187,8 +237,6 @@ namespace ShutdownAlarmApp
             TimeSpan timeRemaining = this.end - DateTime.Now;
             if(timeRemaining<TimeSpan.Zero)
             {
-                //this.countDownTimer.Text = String.Format("end: {0}, Time Remaining: {1}", this.end, timeRemaining);
-                //this.countDownTimer.Text = String.Format("end: {0} start: {1} remaining: {1}", this.end, this.start, timeRemaining);
                 this.countDownTimer.Text = "00:00:00";
                 //this.countDownTimer.Text = "Time is not working";
                 this.initiateCountdown.Enabled = false;

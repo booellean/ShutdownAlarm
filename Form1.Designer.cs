@@ -37,21 +37,25 @@ namespace ShutdownAlarmApp
             this.alarm_button = new System.Windows.Forms.Button();
             this.menu_panel = new System.Windows.Forms.Panel();
             this.shutdown_panel = new System.Windows.Forms.Panel();
-            this.Submit = new System.Windows.Forms.Button();
+            this.dateTimePicker = new System.Windows.Forms.DateTimePicker();
             this.minutesSecond = new System.Windows.Forms.TextBox();
             this.minutesFirst = new System.Windows.Forms.TextBox();
             this.hoursSecond = new System.Windows.Forms.TextBox();
             this.hoursFirst = new System.Windows.Forms.TextBox();
             this.operations = new System.Windows.Forms.ComboBox();
             this.textBoxDynamic = new System.Windows.Forms.TextBox();
+            this.Submit = new System.Windows.Forms.Button();
             this.container_panel = new System.Windows.Forms.Panel();
             this.alarm_panel = new System.Windows.Forms.Panel();
             this.closePanel = new System.Windows.Forms.Panel();
             this.maxPanel = new System.Windows.Forms.Panel();
             this.minPanel = new System.Windows.Forms.Panel();
-            this.dateTimePicker = new System.Windows.Forms.DateTimePicker();
             this.initiateCountdown = new System.Windows.Forms.Timer(this.components);
             this.countDownTimer = new System.Windows.Forms.Label();
+            this.AM = new System.Windows.Forms.Label();
+            this.PM = new System.Windows.Forms.Label();
+            this.militaryTime = new System.Windows.Forms.Label();
+            this.standardTime = new System.Windows.Forms.Label();
             this.menu_panel.SuspendLayout();
             this.shutdown_panel.SuspendLayout();
             this.SuspendLayout();
@@ -99,6 +103,10 @@ namespace ShutdownAlarmApp
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.shutdown_panel.BackColor = System.Drawing.Color.LightGreen;
+            this.shutdown_panel.Controls.Add(this.standardTime);
+            this.shutdown_panel.Controls.Add(this.militaryTime);
+            this.shutdown_panel.Controls.Add(this.PM);
+            this.shutdown_panel.Controls.Add(this.AM);
             this.shutdown_panel.Controls.Add(this.dateTimePicker);
             this.shutdown_panel.Controls.Add(this.minutesSecond);
             this.shutdown_panel.Controls.Add(this.minutesFirst);
@@ -111,19 +119,16 @@ namespace ShutdownAlarmApp
             this.shutdown_panel.Size = new System.Drawing.Size(370, 235);
             this.shutdown_panel.TabIndex = 0;
             // 
-            // Submit
+            // dateTimePicker
             // 
-            this.Submit.Location = new System.Drawing.Point(365, 438);
-            this.Submit.Name = "Submit";
-            this.Submit.Size = new System.Drawing.Size(182, 51);
-            this.Submit.TabIndex = 7;
-            this.Submit.Text = "Set";
-            this.Submit.UseVisualStyleBackColor = true;
-            this.Submit.Click += new System.EventHandler(this.Submit_Click);
+            this.dateTimePicker.Location = new System.Drawing.Point(42, 174);
+            this.dateTimePicker.Name = "dateTimePicker";
+            this.dateTimePicker.Size = new System.Drawing.Size(302, 20);
+            this.dateTimePicker.TabIndex = 7;
             // 
             // minutesSecond
             // 
-            this.minutesSecond.Location = new System.Drawing.Point(158, 113);
+            this.minutesSecond.Location = new System.Drawing.Point(158, 136);
             this.minutesSecond.MaxLength = 1;
             this.minutesSecond.Name = "minutesSecond";
             this.minutesSecond.Size = new System.Drawing.Size(27, 20);
@@ -133,7 +138,7 @@ namespace ShutdownAlarmApp
             // 
             // minutesFirst
             // 
-            this.minutesFirst.Location = new System.Drawing.Point(125, 113);
+            this.minutesFirst.Location = new System.Drawing.Point(125, 136);
             this.minutesFirst.MaxLength = 1;
             this.minutesFirst.Name = "minutesFirst";
             this.minutesFirst.Size = new System.Drawing.Size(27, 20);
@@ -143,7 +148,7 @@ namespace ShutdownAlarmApp
             // 
             // hoursSecond
             // 
-            this.hoursSecond.Location = new System.Drawing.Point(81, 113);
+            this.hoursSecond.Location = new System.Drawing.Point(81, 136);
             this.hoursSecond.MaxLength = 1;
             this.hoursSecond.Name = "hoursSecond";
             this.hoursSecond.Size = new System.Drawing.Size(27, 20);
@@ -153,7 +158,7 @@ namespace ShutdownAlarmApp
             // 
             // hoursFirst
             // 
-            this.hoursFirst.Location = new System.Drawing.Point(47, 113);
+            this.hoursFirst.Location = new System.Drawing.Point(47, 136);
             this.hoursFirst.MaxLength = 1;
             this.hoursFirst.Name = "hoursFirst";
             this.hoursFirst.Size = new System.Drawing.Size(28, 20);
@@ -180,6 +185,16 @@ namespace ShutdownAlarmApp
             this.textBoxDynamic.Name = "textBoxDynamic";
             this.textBoxDynamic.Size = new System.Drawing.Size(287, 20);
             this.textBoxDynamic.TabIndex = 1;
+            // 
+            // Submit
+            // 
+            this.Submit.Location = new System.Drawing.Point(365, 438);
+            this.Submit.Name = "Submit";
+            this.Submit.Size = new System.Drawing.Size(182, 51);
+            this.Submit.TabIndex = 7;
+            this.Submit.Text = "Set";
+            this.Submit.UseVisualStyleBackColor = true;
+            this.Submit.Click += new System.EventHandler(this.Submit_Click);
             // 
             // container_panel
             // 
@@ -236,13 +251,6 @@ namespace ShutdownAlarmApp
             this.minPanel.TabIndex = 6;
             this.minPanel.Click += new System.EventHandler(this.MinimizeForm);
             // 
-            // dateTimePicker
-            // 
-            this.dateTimePicker.Location = new System.Drawing.Point(42, 158);
-            this.dateTimePicker.Name = "dateTimePicker";
-            this.dateTimePicker.Size = new System.Drawing.Size(302, 20);
-            this.dateTimePicker.TabIndex = 7;
-            // 
             // initiateCountdown
             // 
             this.initiateCountdown.Interval = 1000;
@@ -256,6 +264,46 @@ namespace ShutdownAlarmApp
             this.countDownTimer.Size = new System.Drawing.Size(49, 13);
             this.countDownTimer.TabIndex = 8;
             this.countDownTimer.Text = "00:00:00";
+            // 
+            // AM
+            // 
+            this.AM.AutoSize = true;
+            this.AM.Location = new System.Drawing.Point(206, 136);
+            this.AM.Name = "AM";
+            this.AM.Size = new System.Drawing.Size(23, 13);
+            this.AM.TabIndex = 8;
+            this.AM.Text = "AM";
+            this.AM.Click += new System.EventHandler(this.SetTimeFormat);
+            // 
+            // PM
+            // 
+            this.PM.AutoSize = true;
+            this.PM.Location = new System.Drawing.Point(206, 149);
+            this.PM.Name = "PM";
+            this.PM.Size = new System.Drawing.Size(23, 13);
+            this.PM.TabIndex = 9;
+            this.PM.Text = "PM";
+            this.PM.Click += new System.EventHandler(this.SetTimeFormat);
+            // 
+            // militaryTime
+            // 
+            this.militaryTime.AutoSize = true;
+            this.militaryTime.Location = new System.Drawing.Point(44, 110);
+            this.militaryTime.Name = "militaryTime";
+            this.militaryTime.Size = new System.Drawing.Size(39, 13);
+            this.militaryTime.TabIndex = 10;
+            this.militaryTime.Text = "Military";
+            this.militaryTime.Click += new System.EventHandler(this.SetTimeFormat);
+            // 
+            // standardTime
+            // 
+            this.standardTime.AutoSize = true;
+            this.standardTime.Location = new System.Drawing.Point(91, 110);
+            this.standardTime.Name = "standardTime";
+            this.standardTime.Size = new System.Drawing.Size(50, 13);
+            this.standardTime.TabIndex = 11;
+            this.standardTime.Text = "Standard";
+            this.standardTime.Click += new System.EventHandler(this.SetTimeFormat);
             // 
             // ShutdownAlarm
             // 
@@ -307,6 +355,10 @@ namespace ShutdownAlarmApp
         private System.Windows.Forms.DateTimePicker dateTimePicker;
         private System.Windows.Forms.Timer initiateCountdown;
         private System.Windows.Forms.Label countDownTimer;
+        private System.Windows.Forms.Label PM;
+        private System.Windows.Forms.Label AM;
+        private System.Windows.Forms.Label standardTime;
+        private System.Windows.Forms.Label militaryTime;
     }
 
 }
