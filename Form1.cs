@@ -263,8 +263,33 @@ namespace ShutdownAlarmApp
             if(timeRemaining<TimeSpan.Zero)
             {
                 this.countDownTimer.Text = "00:00:00";
-                //this.countDownTimer.Text = "Time is not working";
                 this.initiateCountdown.Enabled = false;
+                switch (this.operations.Text)
+                {
+                    case "Shutdown":
+                        System.Diagnostics.Process.Start("shutdown", "/s");
+                        break;
+                    case "Restart":
+                        System.Diagnostics.Process.Start("shutdown.exe", "-r -t 0");
+                        break;
+                    case "Sleep":
+                        Application.SetSuspendState(PowerState.Suspend, true, true);
+                        break;
+                    case "Hibernate":
+                        //Try to put computer into hibernate and, if it fails, put it to sleep
+                        try
+                        {
+                            Application.SetSuspendState(PowerState.Hibernate, true, true);  
+                        }
+                        catch
+                        {
+                            Application.SetSuspendState(PowerState.Suspend, true, true);
+                        }
+                        break;
+                    default:
+                        System.Diagnostics.Process.Start("shutdown", "/s");
+                        break;
+                }
             }
             else
             {
