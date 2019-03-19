@@ -19,6 +19,7 @@ namespace ShutdownAlarmApp
         //Time Input variables
         private bool miltime = true;
         private string meridiem = "AM";
+        private bool wakeUp = false;
 
         //Variables for Countdown effect
         string endString = "";
@@ -90,15 +91,14 @@ namespace ShutdownAlarmApp
 
         public void LoadAlarmInterface(object sender, EventArgs e)
         {
-            Console.WriteLine("Alarm Interface was Loaded");
             this.alarm_panel.Visible = true;
-            this.shutdown_panel.Visible = false;
+            this.wakeUp = true;
         }
 
         public void LoadShutdownInterface(object sender, EventArgs e)
         {
             this.alarm_panel.Visible = false;
-            this.shutdown_panel.Visible = true;
+            this.wakeUp = false;
         }
 
         private void CloseForm(object sender, EventArgs e)
