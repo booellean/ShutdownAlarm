@@ -362,6 +362,7 @@ namespace ShutdownAlarmApp
             this.alarmMinutesSecond.Size = new System.Drawing.Size(27, 20);
             this.alarmMinutesSecond.TabIndex = 13;
             this.alarmMinutesSecond.Text = "0";
+            this.alarmMinutesSecond.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TimeCharCheck);
             // 
             // alarmMinutesFirst
             // 
@@ -371,6 +372,7 @@ namespace ShutdownAlarmApp
             this.alarmMinutesFirst.Size = new System.Drawing.Size(27, 20);
             this.alarmMinutesFirst.TabIndex = 12;
             this.alarmMinutesFirst.Text = "0";
+            this.alarmMinutesFirst.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TimeCharCheck);
             // 
             // alarmHoursSecond
             // 
@@ -380,6 +382,7 @@ namespace ShutdownAlarmApp
             this.alarmHoursSecond.Size = new System.Drawing.Size(27, 20);
             this.alarmHoursSecond.TabIndex = 11;
             this.alarmHoursSecond.Text = "0";
+            this.alarmHoursSecond.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TimeCharCheck);
             // 
             // alarmHoursFirst
             // 
@@ -389,6 +392,7 @@ namespace ShutdownAlarmApp
             this.alarmHoursFirst.Size = new System.Drawing.Size(28, 20);
             this.alarmHoursFirst.TabIndex = 10;
             this.alarmHoursFirst.Text = "0";
+            this.alarmHoursFirst.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TimeCharCheck);
             // 
             // ShutdownAlarm
             // 

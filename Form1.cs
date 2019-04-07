@@ -135,24 +135,28 @@ namespace ShutdownAlarmApp
             {
                 //TODO: Change acceptable keys based on standard or military time
                 case "hoursFirst":
+                case "alarmHoursFirst":
                     if (!((e.KeyChar == (char)Keys.D0 || e.KeyChar == (char)Keys.D1 || e.KeyChar == (char)Keys.D2) || (e.KeyChar == (char)Keys.NumPad0 || e.KeyChar == (char)Keys.NumPad1 || e.KeyChar == (char)Keys.NumPad2)))
                     {
                         e.Handled = true;
                     }
                     break;
                 case "hoursSecond":
+                case "alarmHoursSecond":
                     if (!(Char.IsDigit(e.KeyChar)))
                     {
                         e.Handled = true;
                     }
                     break;
                 case "minutesFirst":
+                case "alarmMinutesFirst":
                     if (!(((e.KeyChar == (char)Keys.D0 || e.KeyChar == (char)Keys.D1 || e.KeyChar == (char)Keys.D2 || e.KeyChar == (char)Keys.D3 || e.KeyChar == (char)Keys.D4 || e.KeyChar == (char)Keys.D5) || ((e.KeyChar == (char)Keys.NumPad0 || e.KeyChar == (char)Keys.NumPad1 || e.KeyChar == (char)Keys.NumPad2 || e.KeyChar == (char)Keys.NumPad3 || e.KeyChar == (char)Keys.NumPad4 || e.KeyChar == (char)Keys.NumPad5)))))
                     {
                         e.Handled = true;
                     }
                     break;
                 case "minutesSecond":
+                case "alarmMinutesSecond":
                     if (!(Char.IsDigit(e.KeyChar)))
                     {
                         e.Handled = true;
