@@ -136,16 +136,47 @@ namespace ShutdownAlarmApp
                 //TODO: Change acceptable keys based on standard or military time
                 case "hoursFirst":
                 case "alarmHoursFirst":
-                    if (!((e.KeyChar == (char)Keys.D0 || e.KeyChar == (char)Keys.D1 || e.KeyChar == (char)Keys.D2) || (e.KeyChar == (char)Keys.NumPad0 || e.KeyChar == (char)Keys.NumPad1 || e.KeyChar == (char)Keys.NumPad2)))
+                    if(this.miltime == true)
                     {
-                        e.Handled = true;
+                        if (!((e.KeyChar == (char)Keys.D0 || e.KeyChar == (char)Keys.D1 || e.KeyChar == (char)Keys.D2) || (e.KeyChar == (char)Keys.NumPad0 || e.KeyChar == (char)Keys.NumPad1 || e.KeyChar == (char)Keys.NumPad2)))
+                        {
+                            e.Handled = true;
+                        }
+                    }
+                    else
+                    {
+                        if (!(e.KeyChar == (char)Keys.D0 || e.KeyChar == (char)Keys.D1 || (e.KeyChar == (char)Keys.NumPad0 || e.KeyChar == (char)Keys.NumPad1)))
+                        {
+                            e.Handled = true;
+                        }
                     }
                     break;
                 case "hoursSecond":
                 case "alarmHoursSecond":
-                    if (!(Char.IsDigit(e.KeyChar)))
+                    if (this.miltime == true)
                     {
-                        e.Handled = true;
+                        if (!(Char.IsDigit(e.KeyChar)))
+                        {
+                            e.Handled = true;
+                        }
+                    }
+                    else
+                    {
+                        //Adding the focused property gaurantees that only the relevant textbox is checked against relevant textbox
+                        if((this.hoursFirst.Text == "1" && this.hoursSecond.Focused) || (this.alarmHoursFirst.Text == "1" && this.alarmHoursSecond.Focused))
+                        {
+                            if (!(e.KeyChar == (char)Keys.D1 || e.KeyChar == (char)Keys.D2 || e.KeyChar == (char)Keys.NumPad1 || e.KeyChar == (char)Keys.NumPad2))
+                            {
+                                e.Handled = true;
+                            }
+                        }
+                        else
+                        {
+                            if (!(Char.IsDigit(e.KeyChar)))
+                            {
+                                e.Handled = true;
+                            }
+                        }
                     }
                     break;
                 case "minutesFirst":
