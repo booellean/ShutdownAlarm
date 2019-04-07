@@ -36,6 +36,7 @@ namespace ShutdownAlarmApp
             this.alarm_button = new System.Windows.Forms.Button();
             this.menu_panel = new System.Windows.Forms.Panel();
             this.shutdown_panel = new System.Windows.Forms.Panel();
+            this.label1 = new System.Windows.Forms.Label();
             this.standardTime = new System.Windows.Forms.Label();
             this.militaryTime = new System.Windows.Forms.Label();
             this.PM = new System.Windows.Forms.Label();
@@ -55,8 +56,16 @@ namespace ShutdownAlarmApp
             this.minPanel = new System.Windows.Forms.Panel();
             this.initiateCountdown = new System.Windows.Forms.Timer(this.components);
             this.countDownTimer = new System.Windows.Forms.Label();
+            this.alarmPM = new System.Windows.Forms.Label();
+            this.alarmAM = new System.Windows.Forms.Label();
+            this.alarmDateTimePicker = new System.Windows.Forms.DateTimePicker();
+            this.alarmMinutesSecond = new System.Windows.Forms.TextBox();
+            this.alarmMinutesFirst = new System.Windows.Forms.TextBox();
+            this.alarmHoursSecond = new System.Windows.Forms.TextBox();
+            this.alarmHoursFirst = new System.Windows.Forms.TextBox();
             this.menu_panel.SuspendLayout();
             this.shutdown_panel.SuspendLayout();
+            this.alarm_panel.SuspendLayout();
             this.SuspendLayout();
             // 
             // shutdown_button
@@ -102,6 +111,7 @@ namespace ShutdownAlarmApp
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.shutdown_panel.BackColor = System.Drawing.Color.LightGreen;
+            this.shutdown_panel.Controls.Add(this.label1);
             this.shutdown_panel.Controls.Add(this.standardTime);
             this.shutdown_panel.Controls.Add(this.militaryTime);
             this.shutdown_panel.Controls.Add(this.PM);
@@ -117,6 +127,14 @@ namespace ShutdownAlarmApp
             this.shutdown_panel.Name = "shutdown_panel";
             this.shutdown_panel.Size = new System.Drawing.Size(370, 205);
             this.shutdown_panel.TabIndex = 0;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(240, 109);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(0, 13);
+            this.label1.TabIndex = 12;
             // 
             // standardTime
             // 
@@ -254,9 +272,16 @@ namespace ShutdownAlarmApp
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.alarm_panel.BackColor = System.Drawing.Color.Maroon;
+            this.alarm_panel.Controls.Add(this.alarmPM);
+            this.alarm_panel.Controls.Add(this.alarmAM);
+            this.alarm_panel.Controls.Add(this.alarmDateTimePicker);
+            this.alarm_panel.Controls.Add(this.alarmMinutesSecond);
+            this.alarm_panel.Controls.Add(this.alarmMinutesFirst);
+            this.alarm_panel.Controls.Add(this.alarmHoursSecond);
+            this.alarm_panel.Controls.Add(this.alarmHoursFirst);
             this.alarm_panel.Location = new System.Drawing.Point(271, 235);
             this.alarm_panel.Name = "alarm_panel";
-            this.alarm_panel.Size = new System.Drawing.Size(370, 137);
+            this.alarm_panel.Size = new System.Drawing.Size(369, 137);
             this.alarm_panel.TabIndex = 3;
             this.alarm_panel.Visible = false;
             // 
@@ -304,6 +329,67 @@ namespace ShutdownAlarmApp
             this.countDownTimer.TabIndex = 8;
             this.countDownTimer.Text = "00:00:00";
             // 
+            // alarmPM
+            // 
+            this.alarmPM.AutoSize = true;
+            this.alarmPM.Location = new System.Drawing.Point(206, 58);
+            this.alarmPM.Name = "alarmPM";
+            this.alarmPM.Size = new System.Drawing.Size(23, 13);
+            this.alarmPM.TabIndex = 16;
+            this.alarmPM.Text = "PM";
+            // 
+            // alarmAM
+            // 
+            this.alarmAM.AutoSize = true;
+            this.alarmAM.Location = new System.Drawing.Point(206, 45);
+            this.alarmAM.Name = "alarmAM";
+            this.alarmAM.Size = new System.Drawing.Size(23, 13);
+            this.alarmAM.TabIndex = 15;
+            this.alarmAM.Text = "AM";
+            // 
+            // alarmDateTimePicker
+            // 
+            this.alarmDateTimePicker.Location = new System.Drawing.Point(42, 83);
+            this.alarmDateTimePicker.Name = "alarmDateTimePicker";
+            this.alarmDateTimePicker.Size = new System.Drawing.Size(302, 20);
+            this.alarmDateTimePicker.TabIndex = 14;
+            // 
+            // alarmMinutesSecond
+            // 
+            this.alarmMinutesSecond.Location = new System.Drawing.Point(158, 45);
+            this.alarmMinutesSecond.MaxLength = 1;
+            this.alarmMinutesSecond.Name = "alarmMinutesSecond";
+            this.alarmMinutesSecond.Size = new System.Drawing.Size(27, 20);
+            this.alarmMinutesSecond.TabIndex = 13;
+            this.alarmMinutesSecond.Text = "0";
+            // 
+            // alarmMinutesFirst
+            // 
+            this.alarmMinutesFirst.Location = new System.Drawing.Point(125, 45);
+            this.alarmMinutesFirst.MaxLength = 1;
+            this.alarmMinutesFirst.Name = "alarmMinutesFirst";
+            this.alarmMinutesFirst.Size = new System.Drawing.Size(27, 20);
+            this.alarmMinutesFirst.TabIndex = 12;
+            this.alarmMinutesFirst.Text = "0";
+            // 
+            // alarmHoursSecond
+            // 
+            this.alarmHoursSecond.Location = new System.Drawing.Point(81, 45);
+            this.alarmHoursSecond.MaxLength = 1;
+            this.alarmHoursSecond.Name = "alarmHoursSecond";
+            this.alarmHoursSecond.Size = new System.Drawing.Size(27, 20);
+            this.alarmHoursSecond.TabIndex = 11;
+            this.alarmHoursSecond.Text = "0";
+            // 
+            // alarmHoursFirst
+            // 
+            this.alarmHoursFirst.Location = new System.Drawing.Point(47, 45);
+            this.alarmHoursFirst.MaxLength = 1;
+            this.alarmHoursFirst.Name = "alarmHoursFirst";
+            this.alarmHoursFirst.Size = new System.Drawing.Size(28, 20);
+            this.alarmHoursFirst.TabIndex = 10;
+            this.alarmHoursFirst.Text = "0";
+            // 
             // ShutdownAlarm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -328,6 +414,8 @@ namespace ShutdownAlarmApp
             this.menu_panel.ResumeLayout(false);
             this.shutdown_panel.ResumeLayout(false);
             this.shutdown_panel.PerformLayout();
+            this.alarm_panel.ResumeLayout(false);
+            this.alarm_panel.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -358,6 +446,14 @@ namespace ShutdownAlarmApp
         private System.Windows.Forms.Label AM;
         private System.Windows.Forms.Label standardTime;
         private System.Windows.Forms.Label militaryTime;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label alarmPM;
+        private System.Windows.Forms.Label alarmAM;
+        private System.Windows.Forms.DateTimePicker alarmDateTimePicker;
+        private System.Windows.Forms.TextBox alarmMinutesSecond;
+        private System.Windows.Forms.TextBox alarmMinutesFirst;
+        private System.Windows.Forms.TextBox alarmHoursSecond;
+        private System.Windows.Forms.TextBox alarmHoursFirst;
     }
 
 }
