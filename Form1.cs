@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Microsoft.Win32;
 
 namespace ShutdownAlarmApp
 {
@@ -289,6 +290,19 @@ namespace ShutdownAlarmApp
                 this.initiate = false;
                 this.countDownTimer.Text = "00:00:00";
                 this.Submit.Text = "Set";
+            }
+        }
+
+        private void WakeUpEvent(object s, PowerModeChangedEventArgs e)
+        {
+            //Check if Alarm mode is active. If not, do not play custom application args
+            if (this.wakeUp == true)
+            {
+                //Check that the computer is waking up
+                if(e.Mode == PowerModes.Resume)
+                {
+                    System.Diagnostics.Process.Start(@"https://www.youtube.com/watch?v=FAO8ZAUBx0c");
+                }
             }
         }
 

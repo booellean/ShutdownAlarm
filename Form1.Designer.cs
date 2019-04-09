@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Drawing;
+using Microsoft.Win32;
 
 namespace ShutdownAlarmApp
 {
@@ -51,11 +52,6 @@ namespace ShutdownAlarmApp
             this.Submit = new System.Windows.Forms.Button();
             this.container_panel = new System.Windows.Forms.Panel();
             this.alarm_panel = new System.Windows.Forms.Panel();
-            this.closePanel = new System.Windows.Forms.Panel();
-            this.maxPanel = new System.Windows.Forms.Panel();
-            this.minPanel = new System.Windows.Forms.Panel();
-            this.initiateCountdown = new System.Windows.Forms.Timer(this.components);
-            this.countDownTimer = new System.Windows.Forms.Label();
             this.alarmPM = new System.Windows.Forms.Label();
             this.alarmAM = new System.Windows.Forms.Label();
             this.alarmDateTimePicker = new System.Windows.Forms.DateTimePicker();
@@ -63,6 +59,11 @@ namespace ShutdownAlarmApp
             this.alarmMinutesFirst = new System.Windows.Forms.TextBox();
             this.alarmHoursSecond = new System.Windows.Forms.TextBox();
             this.alarmHoursFirst = new System.Windows.Forms.TextBox();
+            this.closePanel = new System.Windows.Forms.Panel();
+            this.maxPanel = new System.Windows.Forms.Panel();
+            this.minPanel = new System.Windows.Forms.Panel();
+            this.initiateCountdown = new System.Windows.Forms.Timer(this.components);
+            this.countDownTimer = new System.Windows.Forms.Label();
             this.menu_panel.SuspendLayout();
             this.shutdown_panel.SuspendLayout();
             this.alarm_panel.SuspendLayout();
@@ -285,50 +286,6 @@ namespace ShutdownAlarmApp
             this.alarm_panel.TabIndex = 3;
             this.alarm_panel.Visible = false;
             // 
-            // closePanel
-            // 
-            this.closePanel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.closePanel.BackColor = System.Drawing.Color.DarkRed;
-            this.closePanel.Location = new System.Drawing.Point(632, 2);
-            this.closePanel.Name = "closePanel";
-            this.closePanel.Size = new System.Drawing.Size(20, 17);
-            this.closePanel.TabIndex = 4;
-            this.closePanel.Click += new System.EventHandler(this.CloseForm);
-            // 
-            // maxPanel
-            // 
-            this.maxPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.maxPanel.BackColor = System.Drawing.Color.LightCoral;
-            this.maxPanel.Location = new System.Drawing.Point(606, 2);
-            this.maxPanel.Name = "maxPanel";
-            this.maxPanel.Size = new System.Drawing.Size(20, 17);
-            this.maxPanel.TabIndex = 5;
-            this.maxPanel.Click += new System.EventHandler(this.MaximizeForm);
-            // 
-            // minPanel
-            // 
-            this.minPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.minPanel.BackColor = System.Drawing.Color.Lime;
-            this.minPanel.Location = new System.Drawing.Point(580, 2);
-            this.minPanel.Name = "minPanel";
-            this.minPanel.Size = new System.Drawing.Size(20, 17);
-            this.minPanel.TabIndex = 6;
-            this.minPanel.Click += new System.EventHandler(this.MinimizeForm);
-            // 
-            // initiateCountdown
-            // 
-            this.initiateCountdown.Interval = 1000;
-            this.initiateCountdown.Tick += new System.EventHandler(this.CountDown);
-            // 
-            // countDownTimer
-            // 
-            this.countDownTimer.AutoSize = true;
-            this.countDownTimer.Location = new System.Drawing.Point(435, 409);
-            this.countDownTimer.Name = "countDownTimer";
-            this.countDownTimer.Size = new System.Drawing.Size(49, 13);
-            this.countDownTimer.TabIndex = 8;
-            this.countDownTimer.Text = "00:00:00";
-            // 
             // alarmPM
             // 
             this.alarmPM.AutoSize = true;
@@ -393,6 +350,50 @@ namespace ShutdownAlarmApp
             this.alarmHoursFirst.TabIndex = 10;
             this.alarmHoursFirst.Text = "0";
             this.alarmHoursFirst.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TimeCharCheck);
+            // 
+            // closePanel
+            // 
+            this.closePanel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.closePanel.BackColor = System.Drawing.Color.DarkRed;
+            this.closePanel.Location = new System.Drawing.Point(632, 2);
+            this.closePanel.Name = "closePanel";
+            this.closePanel.Size = new System.Drawing.Size(20, 17);
+            this.closePanel.TabIndex = 4;
+            this.closePanel.Click += new System.EventHandler(this.CloseForm);
+            // 
+            // maxPanel
+            // 
+            this.maxPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.maxPanel.BackColor = System.Drawing.Color.LightCoral;
+            this.maxPanel.Location = new System.Drawing.Point(606, 2);
+            this.maxPanel.Name = "maxPanel";
+            this.maxPanel.Size = new System.Drawing.Size(20, 17);
+            this.maxPanel.TabIndex = 5;
+            this.maxPanel.Click += new System.EventHandler(this.MaximizeForm);
+            // 
+            // minPanel
+            // 
+            this.minPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.minPanel.BackColor = System.Drawing.Color.Lime;
+            this.minPanel.Location = new System.Drawing.Point(580, 2);
+            this.minPanel.Name = "minPanel";
+            this.minPanel.Size = new System.Drawing.Size(20, 17);
+            this.minPanel.TabIndex = 6;
+            this.minPanel.Click += new System.EventHandler(this.MinimizeForm);
+            // 
+            // initiateCountdown
+            // 
+            this.initiateCountdown.Interval = 1000;
+            this.initiateCountdown.Tick += new System.EventHandler(this.CountDown);
+            // 
+            // countDownTimer
+            // 
+            this.countDownTimer.AutoSize = true;
+            this.countDownTimer.Location = new System.Drawing.Point(435, 409);
+            this.countDownTimer.Name = "countDownTimer";
+            this.countDownTimer.Size = new System.Drawing.Size(49, 13);
+            this.countDownTimer.TabIndex = 8;
+            this.countDownTimer.Text = "00:00:00";
             // 
             // ShutdownAlarm
             // 
