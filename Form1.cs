@@ -134,7 +134,6 @@ namespace ShutdownAlarmApp
 
             switch (box.Name)
             {
-                //TODO: Change acceptable keys based on standard or military time
                 case "hoursFirst":
                 case "alarmHoursFirst":
                     if(this.miltime == true)
@@ -203,6 +202,7 @@ namespace ShutdownAlarmApp
 
         private void SetTimeFormat(object sender, EventArgs e)
         {
+            //TODO: Add a function that will check truths, etc and change time to proper format with labels are clicked
             var box = (Label)sender;
             textBoxDynamic.Text = box.Text;
             switch (box.Text)
@@ -263,10 +263,9 @@ namespace ShutdownAlarmApp
 
         private void Submit_Click(object sender, EventArgs e)
         {
-            this.endString = dateTimePicker.Value.ToString("yyyy-MM-dd") + " " + this.hoursFirst.Text + this.hoursSecond.Text + ":" + this.minutesFirst.Text + this.minutesSecond.Text;
             try
             {
-                this.end = DateTime.ParseExact(endString, "yyyy-MM-dd HH:mm", System.Globalization.CultureInfo.InvariantCulture);
+                this.end = GetDateTime(dateTimePicker.Value, this.hoursFirst.Text, this.hoursSecond.Text, this.minutesFirst.Text, this.minutesSecond.Text);
                 //Check if the time is before now. If so, add a day, most likely are trying to shutdown at midnight
                 if (this.end < DateTime.Now)
                 {
@@ -291,6 +290,13 @@ namespace ShutdownAlarmApp
                 this.countDownTimer.Text = "00:00:00";
                 this.Submit.Text = "Set";
             }
+        }
+
+        private DateTime GetDateTime(DateTime dateInput, String firstHour, String secondHour, String firstMinutes, String secondMinutes)
+        {
+            //TODO: Handle Standard Time events Using conversion Function
+            this.endString = dateInput.ToString("yyyy-MM-dd") + " " + firstHour + secondHour + ":" + firstMinutes + secondMinutes;
+            return DateTime.ParseExact(this.endString, "yyyy-MM-dd HH:mm", System.Globalization.CultureInfo.InvariantCulture);
         }
 
         private void WakeUpEvent(object s, PowerModeChangedEventArgs e)
