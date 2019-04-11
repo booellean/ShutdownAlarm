@@ -155,9 +155,19 @@ namespace ShutdownAlarmApp
                 case "alarmHoursSecond":
                     if (this.miltime == true)
                     {
-                        if (!(Char.IsDigit(e.KeyChar)))
+                        if ((this.hoursFirst.Text == "2" && this.hoursSecond.Focused) || (this.alarmHoursFirst.Text == "2" && this.alarmHoursSecond.Focused))
                         {
-                            e.Handled = true;
+                            if (!(e.KeyChar == (char)Keys.D0 || e.KeyChar == (char)Keys.D1 || e.KeyChar == (char)Keys.D2 || e.KeyChar == (char)Keys.D3 || e.KeyChar == (char)Keys.NumPad0 || e.KeyChar == (char)Keys.NumPad1 || e.KeyChar == (char)Keys.NumPad2 || e.KeyChar == (char)Keys.NumPad3))
+                            {
+                                e.Handled = true;
+                            }
+                        }
+                        else
+                        {
+                            if (!(Char.IsDigit(e.KeyChar)))
+                            {
+                                e.Handled = true;
+                            }
                         }
                     }
                     else
@@ -202,15 +212,36 @@ namespace ShutdownAlarmApp
 
         private void SetTimeFormat(object sender, EventArgs e)
         {
-            //TODO: Add a function that will check truths, etc and change time to proper format with labels are clicked
             var box = (Label)sender;
-            textBoxDynamic.Text = box.Text;
             switch (box.Text)
             {
                 case "Military":
+                    //IMPORTANT: convert prior to changing boolean, prevents errors elsewhere in code
+                    var convertedNumbers = ConvertTime(this.hoursFirst.Text, this.hoursSecond.Text);
+                    this.hoursFirst.Text = convertedNumbers.Item1;
+                    this.hoursSecond.Text = convertedNumbers.Item2;
+                    if (this.wakeUp == true)
+                    {
+                        convertedNumbers = ConvertTime(this.alarmHoursFirst.Text, this.alarmHoursSecond.Text);
+                        this.alarmHoursFirst.Text = convertedNumbers.Item1;
+                        this.alarmHoursSecond.Text = convertedNumbers.Item2;
+                    }
+
                     this.miltime = true;
                     break;
                 case "Standard":
+                    //IMPORTANT: convert prior to changing boolean, prevents errors elsewhere in code
+
+                    convertedNumbers = ConvertTime(this.hoursFirst.Text, this.hoursSecond.Text);
+                    this.hoursFirst.Text = convertedNumbers.Item1;
+                    this.hoursSecond.Text = convertedNumbers.Item2;
+                    if (this.wakeUp == true)
+                    {
+                        convertedNumbers = ConvertTime(this.alarmHoursFirst.Text, this.alarmHoursSecond.Text);
+                        this.alarmHoursFirst.Text = convertedNumbers.Item1;
+                        this.alarmHoursSecond.Text = convertedNumbers.Item2;
+                    }
+
                     this.miltime = false;
                     break;
                 case "AM":
@@ -294,9 +325,61 @@ namespace ShutdownAlarmApp
 
         private DateTime GetDateTime(DateTime dateInput, String firstHour, String secondHour, String firstMinutes, String secondMinutes)
         {
-            //TODO: Handle Standard Time events Using conversion Function
+            if(this.miltime == false)
+            {
+                var convertedNumbers = ConvertTime(firstHour, secondHour);
+                firstHour = convertedNumbers.Item1;
+                secondHour = convertedNumbers.Item2;
+            }
             this.endString = dateInput.ToString("yyyy-MM-dd") + " " + firstHour + secondHour + ":" + firstMinutes + secondMinutes;
             return DateTime.ParseExact(this.endString, "yyyy-MM-dd HH:mm", System.Globalization.CultureInfo.InvariantCulture);
+        }
+
+        private Tuple<string, string> ConvertTime(String firstHour, String secondHour)
+        {
+            int fullNum = int.Parse(firstHour + secondHour);
+            if (this.miltime == true)
+            {
+                //convert to Standard Time
+                if (fullNum > 12)
+                {
+                    this.meridiem = "PM";
+                    fullNum -= 12;
+                }
+                else if (fullNum == 12)
+                {
+                    this.meridiem = "PM";
+                }
+                else
+                {
+                    this.meridiem = "AM";
+                }
+            }
+            else
+            {
+                //convert to Military Time
+                if(this.meridiem == "PM" && fullNum < 12)
+                {
+                    fullNum += 12;
+                }
+            }
+
+            //Check if fullNum changed and parse accordingly
+            if(fullNum != int.Parse(firstHour + secondHour))
+            {
+                if (fullNum <= 10)
+                {
+                    firstHour = "0";
+                    secondHour = fullNum.ToString();
+                }
+                else
+                {
+                    firstHour = (fullNum.ToString()).Substring(0, 1);
+                    secondHour = (fullNum.ToString()).Substring(1, 1);
+                }
+            }
+
+            return new Tuple<string, string>(firstHour, secondHour);
         }
 
         private void WakeUpEvent(object s, PowerModeChangedEventArgs e)
