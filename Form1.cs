@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Diagnostics;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -20,11 +22,13 @@ namespace ShutdownAlarmApp
         //Time Input variables
         private bool miltime = true;
         private string meridiem = "AM";
+        private string lastOp = "";
         private bool wakeUp = false;
 
         //Variables for Countdown effect
         string endString = "";
         DateTime end;
+        DateTime bootUp;
 
         //Responsive Colors and sizes determined for screen sizes
         static Color activeColor = Color.FromArgb(216, 71, 158);
@@ -94,12 +98,17 @@ namespace ShutdownAlarmApp
         {
             this.alarm_panel.Visible = true;
             this.wakeUp = true;
+            this.lastOp = this.operations.Text;
+            this.operations.Text = "Sleep";
+            this.operations.Enabled = false;
         }
 
         public void LoadShutdownInterface(object sender, EventArgs e)
         {
             this.alarm_panel.Visible = false;
             this.wakeUp = false;
+            this.operations.Text = this.lastOp;
+            this.operations.Enabled = true;
         }
 
         private void CloseForm(object sender, EventArgs e)
@@ -296,7 +305,12 @@ namespace ShutdownAlarmApp
         {
             try
             {
-                this.end = GetDateTime(dateTimePicker.Value, this.hoursFirst.Text, this.hoursSecond.Text, this.minutesFirst.Text, this.minutesSecond.Text);
+                //Set a bootUp time if alarm has been activated
+                if (this.wakeUp == true)
+                {
+                    this.bootUp = GetDateTime(this.alarmDateTimePicker.Value, this.alarmHoursFirst.Text, this.alarmHoursSecond.Text, this.alarmMinutesFirst.Text, this.alarmMinutesSecond.Text);
+                }
+                this.end = GetDateTime(this.dateTimePicker.Value, this.hoursFirst.Text, this.hoursSecond.Text, this.minutesFirst.Text, this.minutesSecond.Text);
                 //Check if the time is before now. If so, add a day, most likely are trying to shutdown at midnight
                 if (this.end < DateTime.Now)
                 {
@@ -318,6 +332,10 @@ namespace ShutdownAlarmApp
             {
                 this.initiateCountdown.Enabled = false;
                 this.initiate = false;
+                if(this.initiateWakeUp.Enabled == true)
+                {
+                    this.initiateWakeUp.Enabled = false;
+                }
                 this.countDownTimer.Text = "00:00:00";
                 this.Submit.Text = "Set";
             }
@@ -382,19 +400,6 @@ namespace ShutdownAlarmApp
             return new Tuple<string, string>(firstHour, secondHour);
         }
 
-        private void WakeUpEvent(object s, PowerModeChangedEventArgs e)
-        {
-            //Check if Alarm mode is active. If not, do not play custom application args
-            if (this.wakeUp == true)
-            {
-                //Check that the computer is waking up
-                if(e.Mode == PowerModes.Resume)
-                {
-                    System.Diagnostics.Process.Start(@"https://www.youtube.com/watch?v=FAO8ZAUBx0c");
-                }
-            }
-        }
-
         private void CountDown(object sender, EventArgs e)
         {
             TimeSpan timeRemaining = this.end - DateTime.Now;
@@ -402,6 +407,11 @@ namespace ShutdownAlarmApp
             {
                 this.countDownTimer.Text = "00:00:00";
                 this.initiateCountdown.Enabled = false;
+                if (this.wakeUp == true)
+                {
+                    this.initiateWakeUp.Enabled = true;
+                }
+
                 switch (this.operations.Text)
                 {
                     case "Shutdown":
@@ -442,6 +452,20 @@ namespace ShutdownAlarmApp
                 this.countDownTimer.Text = String.Format("{0:hh\\:mm\\:ss}",timeRemaining);
             }
         }
+
+        private void WakeUpEvent(object sender, EventArgs e)
+        {
+            TimeSpan timeRemaining = this.bootUp - DateTime.Now;
+            if (timeRemaining < TimeSpan.Zero)
+            {
+                String path = System.IO.Path.Combine(System.IO.Directory.GetCurrentDirectory().ToString(), "exec.BAT");
+                this.initiateWakeUp.Enabled = false;
+                SendKeys.Send("{ENTER}");
+                //var f = new System.Diagnostics.Process();
+
+                //Process.Start(path);
+                Process.Start(@"https://www.youtube.com/watch?v=FAO8ZAUBx0c");
+            }
+        }
     }
 }
-//this.textBoxDynamic.Text = String.Format("x: {0} y: {1} Width: {2} Height: {3}", this.leftPOS, this.topPOS, this.winWidth, this.winHeight);

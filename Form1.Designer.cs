@@ -64,6 +64,7 @@ namespace ShutdownAlarmApp
             this.minPanel = new System.Windows.Forms.Panel();
             this.initiateCountdown = new System.Windows.Forms.Timer(this.components);
             this.countDownTimer = new System.Windows.Forms.Label();
+            this.initiateWakeUp = new System.Windows.Forms.Timer(this.components);
             this.menu_panel.SuspendLayout();
             this.shutdown_panel.SuspendLayout();
             this.alarm_panel.SuspendLayout();
@@ -236,6 +237,7 @@ namespace ShutdownAlarmApp
             this.operations.Name = "operations";
             this.operations.Size = new System.Drawing.Size(287, 21);
             this.operations.TabIndex = 2;
+            this.operations.Text = "Shutdown";
             // 
             // textBoxDynamic
             // 
@@ -395,6 +397,10 @@ namespace ShutdownAlarmApp
             this.countDownTimer.TabIndex = 8;
             this.countDownTimer.Text = "00:00:00";
             // 
+            // initiateWakeUp
+            // 
+            this.initiateWakeUp.Tick += new System.EventHandler(this.WakeUpEvent);
+            // 
             // ShutdownAlarm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -459,6 +465,7 @@ namespace ShutdownAlarmApp
         private System.Windows.Forms.TextBox alarmMinutesFirst;
         private System.Windows.Forms.TextBox alarmHoursSecond;
         private System.Windows.Forms.TextBox alarmHoursFirst;
+        private System.Windows.Forms.Timer initiateWakeUp;
     }
 
 }
