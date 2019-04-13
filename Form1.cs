@@ -21,14 +21,12 @@ namespace ShutdownAlarmApp
 
         //Time Input variables
         private bool miltime = true;
+        private bool timeInput = false;
         private string meridiem = "AM";
-        private string lastOp = "";
-        private bool wakeUp = false;
 
         //Variables for Countdown effect
         string endString = "";
         DateTime end;
-        DateTime bootUp;
 
         //Responsive Colors and sizes determined for screen sizes
         static Color activeColor = Color.FromArgb(216, 71, 158);
@@ -97,18 +95,13 @@ namespace ShutdownAlarmApp
         public void LoadAlarmInterface(object sender, EventArgs e)
         {
             this.alarm_panel.Visible = true;
-            this.wakeUp = true;
-            this.lastOp = this.operations.Text;
-            this.operations.Text = "Sleep";
-            this.operations.Enabled = false;
+            this.shutdown_panel.Visible = false;
         }
 
         public void LoadShutdownInterface(object sender, EventArgs e)
         {
             this.alarm_panel.Visible = false;
-            this.wakeUp = false;
-            this.operations.Text = this.lastOp;
-            this.operations.Enabled = true;
+            this.shutdown_panel.Visible = true;
         }
 
         private void CloseForm(object sender, EventArgs e)
@@ -144,7 +137,6 @@ namespace ShutdownAlarmApp
             switch (box.Name)
             {
                 case "hoursFirst":
-                case "alarmHoursFirst":
                     if(this.miltime == true)
                     {
                         if (!((e.KeyChar == (char)Keys.D0 || e.KeyChar == (char)Keys.D1 || e.KeyChar == (char)Keys.D2) || (e.KeyChar == (char)Keys.NumPad0 || e.KeyChar == (char)Keys.NumPad1 || e.KeyChar == (char)Keys.NumPad2)))
@@ -161,10 +153,9 @@ namespace ShutdownAlarmApp
                     }
                     break;
                 case "hoursSecond":
-                case "alarmHoursSecond":
                     if (this.miltime == true)
                     {
-                        if ((this.hoursFirst.Text == "2" && this.hoursSecond.Focused) || (this.alarmHoursFirst.Text == "2" && this.alarmHoursSecond.Focused))
+                        if (this.hoursFirst.Text == "2")
                         {
                             if (!(e.KeyChar == (char)Keys.D0 || e.KeyChar == (char)Keys.D1 || e.KeyChar == (char)Keys.D2 || e.KeyChar == (char)Keys.D3 || e.KeyChar == (char)Keys.NumPad0 || e.KeyChar == (char)Keys.NumPad1 || e.KeyChar == (char)Keys.NumPad2 || e.KeyChar == (char)Keys.NumPad3))
                             {
@@ -182,7 +173,7 @@ namespace ShutdownAlarmApp
                     else
                     {
                         //Adding the focused property gaurantees that only the relevant textbox is checked against relevant textbox
-                        if((this.hoursFirst.Text == "1" && this.hoursSecond.Focused) || (this.alarmHoursFirst.Text == "1" && this.alarmHoursSecond.Focused))
+                        if(this.hoursFirst.Text == "1")
                         {
                             if (!(e.KeyChar == (char)Keys.D1 || e.KeyChar == (char)Keys.D2 || e.KeyChar == (char)Keys.NumPad1 || e.KeyChar == (char)Keys.NumPad2))
                             {
@@ -199,14 +190,12 @@ namespace ShutdownAlarmApp
                     }
                     break;
                 case "minutesFirst":
-                case "alarmMinutesFirst":
                     if (!(((e.KeyChar == (char)Keys.D0 || e.KeyChar == (char)Keys.D1 || e.KeyChar == (char)Keys.D2 || e.KeyChar == (char)Keys.D3 || e.KeyChar == (char)Keys.D4 || e.KeyChar == (char)Keys.D5) || ((e.KeyChar == (char)Keys.NumPad0 || e.KeyChar == (char)Keys.NumPad1 || e.KeyChar == (char)Keys.NumPad2 || e.KeyChar == (char)Keys.NumPad3 || e.KeyChar == (char)Keys.NumPad4 || e.KeyChar == (char)Keys.NumPad5)))))
                     {
                         e.Handled = true;
                     }
                     break;
                 case "minutesSecond":
-                case "alarmMinutesSecond":
                     if (!(Char.IsDigit(e.KeyChar)))
                     {
                         e.Handled = true;
@@ -229,12 +218,6 @@ namespace ShutdownAlarmApp
                     var convertedNumbers = ConvertTime(this.hoursFirst.Text, this.hoursSecond.Text);
                     this.hoursFirst.Text = convertedNumbers.Item1;
                     this.hoursSecond.Text = convertedNumbers.Item2;
-                    if (this.wakeUp == true)
-                    {
-                        convertedNumbers = ConvertTime(this.alarmHoursFirst.Text, this.alarmHoursSecond.Text);
-                        this.alarmHoursFirst.Text = convertedNumbers.Item1;
-                        this.alarmHoursSecond.Text = convertedNumbers.Item2;
-                    }
 
                     this.miltime = true;
                     break;
@@ -244,12 +227,6 @@ namespace ShutdownAlarmApp
                     convertedNumbers = ConvertTime(this.hoursFirst.Text, this.hoursSecond.Text);
                     this.hoursFirst.Text = convertedNumbers.Item1;
                     this.hoursSecond.Text = convertedNumbers.Item2;
-                    if (this.wakeUp == true)
-                    {
-                        convertedNumbers = ConvertTime(this.alarmHoursFirst.Text, this.alarmHoursSecond.Text);
-                        this.alarmHoursFirst.Text = convertedNumbers.Item1;
-                        this.alarmHoursSecond.Text = convertedNumbers.Item2;
-                    }
 
                     this.miltime = false;
                     break;
@@ -305,17 +282,11 @@ namespace ShutdownAlarmApp
         {
             try
             {
-                //Set a bootUp time if alarm has been activated
-                if (this.wakeUp == true)
-                {
-                    this.bootUp = GetDateTime(this.alarmDateTimePicker.Value, this.alarmHoursFirst.Text, this.alarmHoursSecond.Text, this.alarmMinutesFirst.Text, this.alarmMinutesSecond.Text);
-                }
                 this.end = GetDateTime(this.dateTimePicker.Value, this.hoursFirst.Text, this.hoursSecond.Text, this.minutesFirst.Text, this.minutesSecond.Text);
                 //Check if the time is before now. If so, add a day, most likely are trying to shutdown at midnight
                 if (this.end < DateTime.Now)
                 {
                     this.end = this.end.AddDays(1);
-                    //this.countDownTimer.Text = "This is reading I guess?";
                 }
             }
             catch
@@ -332,10 +303,6 @@ namespace ShutdownAlarmApp
             {
                 this.initiateCountdown.Enabled = false;
                 this.initiate = false;
-                if(this.initiateWakeUp.Enabled == true)
-                {
-                    this.initiateWakeUp.Enabled = false;
-                }
                 this.countDownTimer.Text = "00:00:00";
                 this.Submit.Text = "Set";
             }
@@ -407,44 +374,47 @@ namespace ShutdownAlarmApp
             {
                 this.countDownTimer.Text = "00:00:00";
                 this.initiateCountdown.Enabled = false;
-                if (this.wakeUp == true)
-                {
-                    this.initiateWakeUp.Enabled = true;
-                }
 
-                switch (this.operations.Text)
+                if (this.shutdown_panel.Visible)
                 {
-                    case "Shutdown":
-                        System.Diagnostics.Process.Start("shutdown", "/s");
-                        break;
-                    case "Restart":
-                        System.Diagnostics.Process.Start("shutdown.exe", "-r");
-                        break;
-                    case "Sleep":
-                        //Try to put computer into sleep mode and, if it fails, hibernate
-                        try
-                        {
-                            Application.SetSuspendState(PowerState.Suspend, true, true);                           
-                        }
-                        catch
-                        {
-                            Application.SetSuspendState(PowerState.Hibernate, true, true);
-                        }
-                        break;
-                    case "Hibernate":
-                        //Try to put computer into hibernate and, if it fails, put it to sleep
-                        try
-                        {
-                            Application.SetSuspendState(PowerState.Hibernate, true, true);  
-                        }
-                        catch
-                        {
-                            Application.SetSuspendState(PowerState.Suspend, true, true);
-                        }
-                        break;
-                    default:
-                        System.Diagnostics.Process.Start("shutdown", "/s");
-                        break;
+                    switch (this.operations.Text)
+                    {
+                        case "Shutdown":
+                            System.Diagnostics.Process.Start("shutdown", "/s");
+                            break;
+                        case "Restart":
+                            System.Diagnostics.Process.Start("shutdown.exe", "-r");
+                            break;
+                        case "Sleep":
+                            //Try to put computer into sleep mode and, if it fails, hibernate
+                            try
+                            {
+                                Application.SetSuspendState(PowerState.Suspend, true, true);
+                            }
+                            catch
+                            {
+                                Application.SetSuspendState(PowerState.Hibernate, true, true);
+                            }
+                            break;
+                        case "Hibernate":
+                            //Try to put computer into hibernate and, if it fails, put it to sleep
+                            try
+                            {
+                                Application.SetSuspendState(PowerState.Hibernate, true, true);
+                            }
+                            catch
+                            {
+                                Application.SetSuspendState(PowerState.Suspend, true, true);
+                            }
+                            break;
+                        default:
+                            System.Diagnostics.Process.Start("shutdown", "/s");
+                            break;
+                    }
+                }
+                else
+                {
+                    WakeUpEvent();
                 }
             }
             else
@@ -453,19 +423,9 @@ namespace ShutdownAlarmApp
             }
         }
 
-        private void WakeUpEvent(object sender, EventArgs e)
+        private void WakeUpEvent()
         {
-            TimeSpan timeRemaining = this.bootUp - DateTime.Now;
-            if (timeRemaining < TimeSpan.Zero)
-            {
-                String path = System.IO.Path.Combine(System.IO.Directory.GetCurrentDirectory().ToString(), "exec.BAT");
-                this.initiateWakeUp.Enabled = false;
-                SendKeys.Send("{ENTER}");
-                //var f = new System.Diagnostics.Process();
-
-                //Process.Start(path);
-                Process.Start(@"https://www.youtube.com/watch?v=FAO8ZAUBx0c");
-            }
+            Process.Start(@"https://www.youtube.com/watch?v=FAO8ZAUBx0c");
         }
     }
 }
