@@ -66,7 +66,8 @@ namespace ShutdownAlarmApp
             this.minutes = new System.Windows.Forms.TextBox();
             this.selectFileToPlay = new System.Windows.Forms.OpenFileDialog();
             this.executeSelectFileToPlay = new System.Windows.Forms.Button();
-            this.filePathText = new System.Windows.Forms.Label();
+            this.imageList1 = new System.Windows.Forms.ImageList(this.components);
+            this.filePathText = new System.Windows.Forms.TextBox();
             this.menu_panel.SuspendLayout();
             this.shutdown_panel.SuspendLayout();
             this.alarm_panel.SuspendLayout();
@@ -420,14 +421,20 @@ namespace ShutdownAlarmApp
             this.executeSelectFileToPlay.UseVisualStyleBackColor = true;
             this.executeSelectFileToPlay.Click += new System.EventHandler(this.InitiateFileSearch);
             // 
+            // imageList1
+            // 
+            this.imageList1.ColorDepth = System.Windows.Forms.ColorDepth.Depth8Bit;
+            this.imageList1.ImageSize = new System.Drawing.Size(16, 16);
+            this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
+            // 
             // filePathText
             // 
-            this.filePathText.AutoSize = true;
-            this.filePathText.Location = new System.Drawing.Point(13, 9);
+            this.filePathText.Location = new System.Drawing.Point(21, 10);
             this.filePathText.Name = "filePathText";
-            this.filePathText.Size = new System.Drawing.Size(16, 13);
+            this.filePathText.Size = new System.Drawing.Size(241, 20);
             this.filePathText.TabIndex = 2;
             this.filePathText.Text = "...";
+            this.filePathText.TextChanged += new System.EventHandler(this.SetVariable);
             // 
             // ShutdownAlarm
             // 
@@ -501,7 +508,8 @@ namespace ShutdownAlarmApp
         private System.Windows.Forms.CheckBox repeats;
         private System.Windows.Forms.OpenFileDialog selectFileToPlay;
         private System.Windows.Forms.Button executeSelectFileToPlay;
-        private System.Windows.Forms.Label filePathText;
+        private System.Windows.Forms.TextBox filePathText;
+        private System.Windows.Forms.ImageList imageList1;
     }
 
 }

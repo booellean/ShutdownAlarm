@@ -491,6 +491,9 @@ namespace ShutdownAlarmApp
 
         }
 
-        
+        private void SetVariable(object sender, EventArgs e)
+        {
+            this.filePath = this.filePathText.Text;
+        }
     }
 }
