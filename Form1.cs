@@ -28,6 +28,9 @@ namespace ShutdownAlarmApp
         string endString = "";
         DateTime end;
 
+        //Variables for selecting files
+        string filePath = "";
+
         //Responsive Colors and sizes determined for screen sizes
         static Color activeColor = Color.FromArgb(216, 71, 158);
         static Color passiveColor = Color.FromArgb(198, 198, 198);
@@ -469,8 +472,25 @@ namespace ShutdownAlarmApp
 
         private void WakeUpEvent()
         {
-            Process.Start(@"https://www.youtube.com/watch?v=FAO8ZAUBx0c");
+            Process.Start(filePath);
         }
 
+        private void InitiateFileSearch(object sender, EventArgs e)
+        {
+            DialogResult result = this.selectFileToPlay.ShowDialog();
+
+            if(result == DialogResult.OK)
+            {
+                this.filePath = this.selectFileToPlay.FileName;
+                this.filePathText.Text = this.filePath;
+            }
+        }
+
+        private void SetFileLocation(object sender, CancelEventArgs e)
+        {
+
+        }
+
+        
     }
 }

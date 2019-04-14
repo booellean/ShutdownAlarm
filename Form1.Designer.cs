@@ -64,6 +64,9 @@ namespace ShutdownAlarmApp
             this.hoursPanel = new System.Windows.Forms.Panel();
             this.hours = new System.Windows.Forms.TextBox();
             this.minutes = new System.Windows.Forms.TextBox();
+            this.selectFileToPlay = new System.Windows.Forms.OpenFileDialog();
+            this.executeSelectFileToPlay = new System.Windows.Forms.Button();
+            this.filePathText = new System.Windows.Forms.Label();
             this.menu_panel.SuspendLayout();
             this.shutdown_panel.SuspendLayout();
             this.alarm_panel.SuspendLayout();
@@ -289,17 +292,19 @@ namespace ShutdownAlarmApp
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.alarm_panel.BackColor = System.Drawing.Color.Maroon;
+            this.alarm_panel.Controls.Add(this.filePathText);
+            this.alarm_panel.Controls.Add(this.executeSelectFileToPlay);
             this.alarm_panel.Controls.Add(this.repeats);
             this.alarm_panel.Location = new System.Drawing.Point(272, 134);
             this.alarm_panel.Name = "alarm_panel";
-            this.alarm_panel.Size = new System.Drawing.Size(369, 39);
+            this.alarm_panel.Size = new System.Drawing.Size(369, 79);
             this.alarm_panel.TabIndex = 3;
             this.alarm_panel.Visible = false;
             // 
             // repeats
             // 
             this.repeats.AutoSize = true;
-            this.repeats.Location = new System.Drawing.Point(32, 10);
+            this.repeats.Location = new System.Drawing.Point(285, 12);
             this.repeats.Name = "repeats";
             this.repeats.Size = new System.Drawing.Size(72, 17);
             this.repeats.TabIndex = 0;
@@ -398,6 +403,32 @@ namespace ShutdownAlarmApp
             this.minutes.Text = "00";
             this.minutes.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TimeCharCheck);
             // 
+            // selectFileToPlay
+            // 
+            this.selectFileToPlay.FileName = "selectFileToPlay";
+            this.selectFileToPlay.InitialDirectory = "Desktop";
+            this.selectFileToPlay.Title = "Choose a File to Execute at Timer";
+            this.selectFileToPlay.FileOk += new System.ComponentModel.CancelEventHandler(this.SetFileLocation);
+            // 
+            // executeSelectFileToPlay
+            // 
+            this.executeSelectFileToPlay.Location = new System.Drawing.Point(28, 45);
+            this.executeSelectFileToPlay.Name = "executeSelectFileToPlay";
+            this.executeSelectFileToPlay.Size = new System.Drawing.Size(121, 23);
+            this.executeSelectFileToPlay.TabIndex = 1;
+            this.executeSelectFileToPlay.Text = "Browse...";
+            this.executeSelectFileToPlay.UseVisualStyleBackColor = true;
+            this.executeSelectFileToPlay.Click += new System.EventHandler(this.InitiateFileSearch);
+            // 
+            // filePathText
+            // 
+            this.filePathText.AutoSize = true;
+            this.filePathText.Location = new System.Drawing.Point(13, 9);
+            this.filePathText.Name = "filePathText";
+            this.filePathText.Size = new System.Drawing.Size(16, 13);
+            this.filePathText.TabIndex = 2;
+            this.filePathText.Text = "...";
+            // 
             // ShutdownAlarm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -468,6 +499,9 @@ namespace ShutdownAlarmApp
         private System.Windows.Forms.Button hours_button;
         private System.Windows.Forms.Button time_button;
         private System.Windows.Forms.CheckBox repeats;
+        private System.Windows.Forms.OpenFileDialog selectFileToPlay;
+        private System.Windows.Forms.Button executeSelectFileToPlay;
+        private System.Windows.Forms.Label filePathText;
     }
 
 }
