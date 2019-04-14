@@ -104,6 +104,19 @@ namespace ShutdownAlarmApp
             this.shutdown_panel.Visible = true;
         }
 
+        private void LoadTimeInterface(object sender, EventArgs e)
+        {
+            this.timePanel.Visible = true;
+            this.hoursPanel.Visible = false;
+        }
+
+        private void LoadHoursInterface(object sender, EventArgs e)
+        {
+            this.timePanel.Visible = false;
+            this.hoursPanel.Visible = true;
+
+        }
+
         private void CloseForm(object sender, EventArgs e)
         {
             Close();
@@ -132,12 +145,11 @@ namespace ShutdownAlarmApp
         {
             TextBox box = (TextBox)sender;
 
-            box.SelectAll();
-
             switch (box.Name)
             {
                 case "hoursFirst":
-                    if(this.miltime == true)
+                    box.SelectAll();
+                    if (this.miltime == true)
                     {
                         if (!((e.KeyChar == (char)Keys.D0 || e.KeyChar == (char)Keys.D1 || e.KeyChar == (char)Keys.D2) || (e.KeyChar == (char)Keys.NumPad0 || e.KeyChar == (char)Keys.NumPad1 || e.KeyChar == (char)Keys.NumPad2)))
                         {
@@ -151,8 +163,10 @@ namespace ShutdownAlarmApp
                             e.Handled = true;
                         }
                     }
+                    SendKeys.Send("{TAB}");
                     break;
                 case "hoursSecond":
+                    box.SelectAll();
                     if (this.miltime == true)
                     {
                         if (this.hoursFirst.Text == "2")
@@ -188,14 +202,30 @@ namespace ShutdownAlarmApp
                             }
                         }
                     }
+                    SendKeys.Send("{TAB}");
                     break;
                 case "minutesFirst":
+                    box.SelectAll();
                     if (!(((e.KeyChar == (char)Keys.D0 || e.KeyChar == (char)Keys.D1 || e.KeyChar == (char)Keys.D2 || e.KeyChar == (char)Keys.D3 || e.KeyChar == (char)Keys.D4 || e.KeyChar == (char)Keys.D5) || ((e.KeyChar == (char)Keys.NumPad0 || e.KeyChar == (char)Keys.NumPad1 || e.KeyChar == (char)Keys.NumPad2 || e.KeyChar == (char)Keys.NumPad3 || e.KeyChar == (char)Keys.NumPad4 || e.KeyChar == (char)Keys.NumPad5)))))
                     {
                         e.Handled = true;
                     }
+                    SendKeys.Send("{TAB}");
                     break;
                 case "minutesSecond":
+                    box.SelectAll();
+                    if (!(Char.IsDigit(e.KeyChar)))
+                    {
+                        e.Handled = true;
+                    }
+                    SendKeys.Send("{TAB}");
+                    break;
+                case "hours":
+                case "minutes":
+                    if(box.Text.Length > 1)
+                    {
+                        box.SelectAll();
+                    }
                     if (!(Char.IsDigit(e.KeyChar)))
                     {
                         e.Handled = true;
@@ -205,7 +235,6 @@ namespace ShutdownAlarmApp
                     box.Text = "0";
                     break;
             }
-            SendKeys.Send("{TAB}");
         }
 
         private void SetTimeFormat(object sender, EventArgs e)
@@ -282,12 +311,20 @@ namespace ShutdownAlarmApp
         {
             try
             {
-                this.end = GetDateTime(this.dateTimePicker.Value, this.hoursFirst.Text, this.hoursSecond.Text, this.minutesFirst.Text, this.minutesSecond.Text);
-                //Check if the time is before now. If so, add a day, most likely are trying to shutdown at midnight
-                if (this.end < DateTime.Now)
+                if (this.timePanel.Visible)
                 {
-                    this.end = this.end.AddDays(1);
+                    this.end = GetDateTime(this.dateTimePicker.Value, this.hoursFirst.Text, this.hoursSecond.Text, this.minutesFirst.Text, this.minutesSecond.Text);
+                    //Check if the time is before now. If so, add a day, most likely are trying to shutdown at midnight
+                    if (this.end < DateTime.Now)
+                    {
+                        this.end = this.end.AddDays(1);
+                    }
                 }
+                else
+                {
+                    this.end = DateTime.Now.AddHours(int.Parse(this.hours.Text)).AddMinutes(int.Parse(this.minutes.Text));
+                }
+                
             }
             catch
             {
@@ -373,7 +410,14 @@ namespace ShutdownAlarmApp
             if(timeRemaining<TimeSpan.Zero)
             {
                 this.countDownTimer.Text = "00:00:00";
-                this.initiateCountdown.Enabled = false;
+                if (this.repeats.Checked && this.alarm_panel.Visible)
+                {
+                    this.end = DateTime.Now.AddHours(int.Parse(this.hours.Text)).AddMinutes(int.Parse(this.minutes.Text));
+                }
+                else
+                {
+                    this.initiateCountdown.Enabled = false;
+                }
 
                 if (this.shutdown_panel.Visible)
                 {
@@ -415,7 +459,7 @@ namespace ShutdownAlarmApp
                 else
                 {
                     WakeUpEvent();
-                }
+                }            
             }
             else
             {
@@ -427,5 +471,6 @@ namespace ShutdownAlarmApp
         {
             Process.Start(@"https://www.youtube.com/watch?v=FAO8ZAUBx0c");
         }
+
     }
 }
