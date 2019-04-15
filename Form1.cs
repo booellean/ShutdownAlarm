@@ -10,6 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Microsoft.Win32;
+using System.Drawing.Drawing2D;
 
 namespace ShutdownAlarmApp
 {
@@ -32,6 +33,7 @@ namespace ShutdownAlarmApp
         string filePath = "";
 
         //Responsive Colors and sizes determined for screen sizes
+        Graphics g;
         static Color activeColor = Color.FromArgb(216, 71, 158);
         static Color passiveColor = Color.FromArgb(198, 198, 198);
 
@@ -348,7 +350,7 @@ namespace ShutdownAlarmApp
             }
         }
 
-        private DateTime GetDateTime(DateTime dateInput, String firstHour, String secondHour, String firstMinutes, String secondMinutes)
+        private DateTime GetDateTime(DateTime dateInput, string firstHour, string secondHour, string firstMinutes, string secondMinutes)
         {
             if(this.miltime == false)
             {
@@ -360,7 +362,7 @@ namespace ShutdownAlarmApp
             return DateTime.ParseExact(this.endString, "yyyy-MM-dd HH:mm", System.Globalization.CultureInfo.InvariantCulture);
         }
 
-        private Tuple<string, string> ConvertTime(String firstHour, String secondHour)
+        private Tuple<string, string> ConvertTime(string firstHour, string secondHour)
         {
             int fullNum = int.Parse(firstHour + secondHour);
             if (this.miltime == true)
@@ -494,6 +496,35 @@ namespace ShutdownAlarmApp
         private void SetVariable(object sender, EventArgs e)
         {
             this.filePath = this.filePathText.Text;
+        }
+
+        private void countDownTimer_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void hours_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void ConvertToPolygon(object sender, PaintEventArgs e)
+        {
+            float topWidth = Convert.ToSingle(System.Math.Floor( this.Width * .33 ));
+            float bottomWidth = Convert.ToSingle(System.Math.Floor( this.Width * .4 ));
+            Graphics g = this.CreateGraphics();
+            Pen pen = new Pen(Color.Black);
+            Brush brush = new SolidBrush(Color.FromArgb(255, 255, 0));
+            PointF[] ptr = { new PointF(0,0), new PointF(topWidth,0), new PointF(bottomWidth, this.Height), new PointF(0, this.Height) };
+
+            g.SmoothingMode = SmoothingMode.AntiAlias;
+            g.FillPolygon(brush, ptr);
+            g.DrawPolygon(pen, ptr);
+        }
+
+        private void ClearGraphics(object sender, EventArgs e)
+        {
+            this.Refresh();
         }
     }
 }
