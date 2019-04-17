@@ -38,7 +38,6 @@ namespace ShutdownAlarmApp
             this.hours_button = new System.Windows.Forms.Button();
             this.time_button = new System.Windows.Forms.Button();
             this.shutdown_panel = new System.Windows.Forms.Panel();
-            this.label1 = new System.Windows.Forms.Label();
             this.operations = new System.Windows.Forms.ComboBox();
             this.standardTime = new System.Windows.Forms.Label();
             this.militaryTime = new System.Windows.Forms.Label();
@@ -118,30 +117,22 @@ namespace ShutdownAlarmApp
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.shutdown_panel.BackColor = System.Drawing.Color.LightGreen;
-            this.shutdown_panel.Controls.Add(this.label1);
             this.shutdown_panel.Controls.Add(this.operations);
             this.shutdown_panel.Location = new System.Drawing.Point(271, 24);
             this.shutdown_panel.Name = "shutdown_panel";
-            this.shutdown_panel.Size = new System.Drawing.Size(329, 97);
+            this.shutdown_panel.Size = new System.Drawing.Size(329, 98);
             this.shutdown_panel.TabIndex = 6;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(240, 109);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(0, 13);
-            this.label1.TabIndex = 12;
             // 
             // operations
             // 
+            this.operations.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.operations.FormattingEnabled = true;
             this.operations.Items.AddRange(new object[] {
             "Shutdown",
             "Restart",
             "Sleep",
             "Hibernate"});
-            this.operations.Location = new System.Drawing.Point(23, 41);
+            this.operations.Location = new System.Drawing.Point(23, 42);
             this.operations.Name = "operations";
             this.operations.Size = new System.Drawing.Size(287, 21);
             this.operations.TabIndex = 2;
@@ -236,11 +227,13 @@ namespace ShutdownAlarmApp
             // 
             // Submit
             // 
-            this.Submit.Location = new System.Drawing.Point(365, 438);
+            this.Submit.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.Submit.Location = new System.Drawing.Point(355, 411);
             this.Submit.Name = "Submit";
-            this.Submit.Size = new System.Drawing.Size(182, 51);
+            this.Submit.Size = new System.Drawing.Size(182, 63);
             this.Submit.TabIndex = 10;
             this.Submit.Text = "Set";
+            this.Submit.UseCompatibleTextRendering = true;
             this.Submit.UseVisualStyleBackColor = true;
             this.Submit.Click += new System.EventHandler(this.Submit_Click);
             // 
@@ -259,8 +252,7 @@ namespace ShutdownAlarmApp
             // 
             // alarm_panel
             // 
-            this.alarm_panel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
+            this.alarm_panel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.alarm_panel.BackColor = System.Drawing.Color.Maroon;
             this.alarm_panel.Controls.Add(this.filePathText);
@@ -294,7 +286,7 @@ namespace ShutdownAlarmApp
             // repeats
             // 
             this.repeats.AutoSize = true;
-            this.repeats.Location = new System.Drawing.Point(285, 12);
+            this.repeats.Location = new System.Drawing.Point(242, 81);
             this.repeats.Name = "repeats";
             this.repeats.Size = new System.Drawing.Size(72, 17);
             this.repeats.TabIndex = 0;
@@ -338,12 +330,10 @@ namespace ShutdownAlarmApp
             // 
             // countDownTimer
             // 
-            this.countDownTimer.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.countDownTimer.AutoSize = true;
+            this.countDownTimer.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.countDownTimer.Enabled = false;
             this.countDownTimer.Font = new System.Drawing.Font("8-bit Operator+ SC", 48F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.countDownTimer.Location = new System.Drawing.Point(281, 334);
+            this.countDownTimer.Location = new System.Drawing.Point(271, 319);
             this.countDownTimer.Name = "countDownTimer";
             this.countDownTimer.Size = new System.Drawing.Size(346, 89);
             this.countDownTimer.TabIndex = 8;
@@ -352,8 +342,8 @@ namespace ShutdownAlarmApp
             // 
             // timePanel
             // 
+            this.timePanel.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.timePanel.BackColor = System.Drawing.Color.OrangeRed;
-            this.timePanel.Controls.Add(this.hoursPanel);
             this.timePanel.Controls.Add(this.dateTimePicker);
             this.timePanel.Controls.Add(this.standardTime);
             this.timePanel.Controls.Add(this.hoursFirst);
@@ -363,19 +353,20 @@ namespace ShutdownAlarmApp
             this.timePanel.Controls.Add(this.minutesFirst);
             this.timePanel.Controls.Add(this.AM);
             this.timePanel.Controls.Add(this.minutesSecond);
-            this.timePanel.Location = new System.Drawing.Point(272, 161);
+            this.timePanel.Location = new System.Drawing.Point(262, 168);
             this.timePanel.Name = "timePanel";
-            this.timePanel.Size = new System.Drawing.Size(355, 149);
+            this.timePanel.Size = new System.Drawing.Size(355, 129);
             this.timePanel.TabIndex = 8;
             // 
             // hoursPanel
             // 
+            this.hoursPanel.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.hoursPanel.BackColor = System.Drawing.Color.Teal;
             this.hoursPanel.Controls.Add(this.hours);
             this.hoursPanel.Controls.Add(this.minutes);
-            this.hoursPanel.Location = new System.Drawing.Point(23, 0);
+            this.hoursPanel.Location = new System.Drawing.Point(308, 152);
             this.hoursPanel.Name = "hoursPanel";
-            this.hoursPanel.Size = new System.Drawing.Size(346, 149);
+            this.hoursPanel.Size = new System.Drawing.Size(332, 124);
             this.hoursPanel.TabIndex = 9;
             this.hoursPanel.Visible = false;
             // 
@@ -423,13 +414,14 @@ namespace ShutdownAlarmApp
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(148)))), ((int)(((byte)(198)))));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(652, 501);
+            this.Controls.Add(this.Submit);
+            this.Controls.Add(this.countDownTimer);
+            this.Controls.Add(this.hoursPanel);
             this.Controls.Add(this.time_button);
             this.Controls.Add(this.timePanel);
             this.Controls.Add(this.hours_button);
             this.Controls.Add(this.shutdown_button);
             this.Controls.Add(this.alarm_button);
-            this.Controls.Add(this.countDownTimer);
-            this.Controls.Add(this.Submit);
             this.Controls.Add(this.minPanel);
             this.Controls.Add(this.maxPanel);
             this.Controls.Add(this.closePanel);
@@ -444,7 +436,6 @@ namespace ShutdownAlarmApp
             this.Paint += new System.Windows.Forms.PaintEventHandler(this.ConvertToPolygon);
             this.Resize += new System.EventHandler(this.ClearGraphics);
             this.shutdown_panel.ResumeLayout(false);
-            this.shutdown_panel.PerformLayout();
             this.alarm_panel.ResumeLayout(false);
             this.alarm_panel.PerformLayout();
             this.timePanel.ResumeLayout(false);
@@ -479,7 +470,6 @@ namespace ShutdownAlarmApp
         private System.Windows.Forms.Label AM;
         private System.Windows.Forms.Label standardTime;
         private System.Windows.Forms.Label militaryTime;
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Panel timePanel;
         private System.Windows.Forms.Panel hoursPanel;
         private System.Windows.Forms.TextBox hours;
