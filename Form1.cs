@@ -227,17 +227,16 @@ namespace ShutdownAlarmApp
                     break;
                 case "hours":
                 case "minutes":
-                    if(box.Text.Length > 1)
-                    {
-                        box.SelectAll();
-                    }
+                    //swap first and last digits
+                    box.Text = box.Text[box.Text.Length - 1] + box.Text.Substring(1, box.Text.Length - 2) + box.Text[0];
+                    box.Select(1, 1);
                     if (!(Char.IsDigit(e.KeyChar)))
                     {
                         e.Handled = true;
                     }
                     break;
                 default:
-                    box.Text = "0";
+                    box.Text = "00";
                     break;
             }
         }
@@ -502,12 +501,6 @@ namespace ShutdownAlarmApp
         {
 
         }
-
-        private void hours_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
         private void ConvertToPolygon(object sender, PaintEventArgs e)
         {
             float topWidth = Convert.ToSingle(System.Math.Floor( this.Width * .33 ));
@@ -527,14 +520,35 @@ namespace ShutdownAlarmApp
             this.Refresh();
         }
 
-        private void minutes_TextChanged(object sender, EventArgs e)
-        {
-            
-        }
-
         private void hoursPanel_Paint(object sender, PaintEventArgs e)
         {
 
+        }
+
+        private void time_textChanged(object sender, EventArgs e)
+        {
+            Control control = (Control)sender;
+            switch (control.Name)
+            {
+                case "minutes":
+                    if (control.Text.Length < 2)
+                    {
+                    }
+                    else
+                    {
+                    }
+                    break;
+                case "hours":
+                    if (control.Text.Length < 2)
+                    {
+                    }
+                    else
+                    {
+                    }
+                    break;
+                default:
+                    break;
+            }
         }
     }
 }
