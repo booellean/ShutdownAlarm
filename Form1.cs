@@ -526,5 +526,15 @@ namespace ShutdownAlarmApp
         {
             this.Refresh();
         }
+
+        private void minutes_TextChanged(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void hoursPanel_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
     }
 }
