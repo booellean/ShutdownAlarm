@@ -61,15 +61,17 @@ namespace ShutdownAlarmApp
             this.countDownTimer = new System.Windows.Forms.Label();
             this.timePanel = new System.Windows.Forms.Panel();
             this.hoursPanel = new System.Windows.Forms.Panel();
+            this.label1 = new System.Windows.Forms.Label();
             this.hours = new System.Windows.Forms.TextBox();
             this.minutes = new System.Windows.Forms.TextBox();
+            this.colon = new System.Windows.Forms.Label();
+            this.minuteZero = new System.Windows.Forms.Label();
+            this.hourZero = new System.Windows.Forms.Label();
             this.selectFileToPlay = new System.Windows.Forms.OpenFileDialog();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.controls_panel = new System.Windows.Forms.Panel();
             this.menu_panel = new System.Windows.Forms.Panel();
-            this.hourZero = new System.Windows.Forms.Label();
-            this.minuteZero = new System.Windows.Forms.Label();
-            this.colon = new System.Windows.Forms.Label();
+            this.minutesLabel = new System.Windows.Forms.Label();
             this.shutdown_panel.SuspendLayout();
             this.alarm_panel.SuspendLayout();
             this.timePanel.SuspendLayout();
@@ -134,7 +136,7 @@ namespace ShutdownAlarmApp
             this.shutdown_panel.Controls.Add(this.operations);
             this.shutdown_panel.Location = new System.Drawing.Point(0, 0);
             this.shutdown_panel.Name = "shutdown_panel";
-            this.shutdown_panel.Size = new System.Drawing.Size(396, 21);
+            this.shutdown_panel.Size = new System.Drawing.Size(396, 112);
             this.shutdown_panel.TabIndex = 6;
             // 
             // operations
@@ -146,7 +148,7 @@ namespace ShutdownAlarmApp
             "Restart",
             "Sleep",
             "Hibernate"});
-            this.operations.Location = new System.Drawing.Point(57, 3);
+            this.operations.Location = new System.Drawing.Point(57, 49);
             this.operations.Name = "operations";
             this.operations.Size = new System.Drawing.Size(287, 21);
             this.operations.TabIndex = 2;
@@ -156,7 +158,7 @@ namespace ShutdownAlarmApp
             // 
             this.standardTime.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.standardTime.AutoSize = true;
-            this.standardTime.Location = new System.Drawing.Point(90, 14);
+            this.standardTime.Location = new System.Drawing.Point(89, 14);
             this.standardTime.Name = "standardTime";
             this.standardTime.Size = new System.Drawing.Size(50, 13);
             this.standardTime.TabIndex = 11;
@@ -167,7 +169,7 @@ namespace ShutdownAlarmApp
             // 
             this.militaryTime.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.militaryTime.AutoSize = true;
-            this.militaryTime.Location = new System.Drawing.Point(43, 14);
+            this.militaryTime.Location = new System.Drawing.Point(42, 14);
             this.militaryTime.Name = "militaryTime";
             this.militaryTime.Size = new System.Drawing.Size(39, 13);
             this.militaryTime.TabIndex = 10;
@@ -178,7 +180,7 @@ namespace ShutdownAlarmApp
             // 
             this.PM.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.PM.AutoSize = true;
-            this.PM.Location = new System.Drawing.Point(216, 2);
+            this.PM.Location = new System.Drawing.Point(215, 90);
             this.PM.Name = "PM";
             this.PM.Size = new System.Drawing.Size(23, 13);
             this.PM.TabIndex = 9;
@@ -189,7 +191,7 @@ namespace ShutdownAlarmApp
             // 
             this.AM.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.AM.AutoSize = true;
-            this.AM.Location = new System.Drawing.Point(216, -11);
+            this.AM.Location = new System.Drawing.Point(215, 77);
             this.AM.Name = "AM";
             this.AM.Size = new System.Drawing.Size(23, 13);
             this.AM.TabIndex = 8;
@@ -199,7 +201,7 @@ namespace ShutdownAlarmApp
             // dateTimePicker
             // 
             this.dateTimePicker.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.dateTimePicker.Location = new System.Drawing.Point(38, 32);
+            this.dateTimePicker.Location = new System.Drawing.Point(37, 120);
             this.dateTimePicker.Name = "dateTimePicker";
             this.dateTimePicker.Size = new System.Drawing.Size(302, 20);
             this.dateTimePicker.TabIndex = 7;
@@ -207,7 +209,7 @@ namespace ShutdownAlarmApp
             // minutesSecond
             // 
             this.minutesSecond.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.minutesSecond.Location = new System.Drawing.Point(168, -11);
+            this.minutesSecond.Location = new System.Drawing.Point(167, 77);
             this.minutesSecond.MaxLength = 1;
             this.minutesSecond.Name = "minutesSecond";
             this.minutesSecond.Size = new System.Drawing.Size(27, 20);
@@ -218,7 +220,7 @@ namespace ShutdownAlarmApp
             // minutesFirst
             // 
             this.minutesFirst.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.minutesFirst.Location = new System.Drawing.Point(135, -11);
+            this.minutesFirst.Location = new System.Drawing.Point(134, 77);
             this.minutesFirst.MaxLength = 1;
             this.minutesFirst.Name = "minutesFirst";
             this.minutesFirst.Size = new System.Drawing.Size(27, 20);
@@ -229,7 +231,7 @@ namespace ShutdownAlarmApp
             // hoursSecond
             // 
             this.hoursSecond.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.hoursSecond.Location = new System.Drawing.Point(91, -11);
+            this.hoursSecond.Location = new System.Drawing.Point(90, 77);
             this.hoursSecond.MaxLength = 1;
             this.hoursSecond.Name = "hoursSecond";
             this.hoursSecond.Size = new System.Drawing.Size(27, 20);
@@ -240,7 +242,7 @@ namespace ShutdownAlarmApp
             // hoursFirst
             // 
             this.hoursFirst.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.hoursFirst.Location = new System.Drawing.Point(57, -11);
+            this.hoursFirst.Location = new System.Drawing.Point(56, 77);
             this.hoursFirst.MaxLength = 1;
             this.hoursFirst.Name = "hoursFirst";
             this.hoursFirst.Size = new System.Drawing.Size(28, 20);
@@ -280,19 +282,18 @@ namespace ShutdownAlarmApp
             this.alarm_panel.BackColor = System.Drawing.Color.Maroon;
             this.alarm_panel.Controls.Add(this.filePathText);
             this.alarm_panel.Controls.Add(this.executeSelectFileToPlay);
-            this.alarm_panel.Controls.Add(this.repeats);
             this.alarm_panel.Location = new System.Drawing.Point(0, 3);
             this.alarm_panel.Name = "alarm_panel";
-            this.alarm_panel.Size = new System.Drawing.Size(388, 115);
+            this.alarm_panel.Size = new System.Drawing.Size(396, 109);
             this.alarm_panel.TabIndex = 7;
             this.alarm_panel.Visible = false;
             // 
             // filePathText
             // 
             this.filePathText.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.filePathText.Location = new System.Drawing.Point(21, 30);
+            this.filePathText.Location = new System.Drawing.Point(21, 26);
             this.filePathText.Name = "filePathText";
-            this.filePathText.Size = new System.Drawing.Size(348, 20);
+            this.filePathText.Size = new System.Drawing.Size(356, 20);
             this.filePathText.TabIndex = 2;
             this.filePathText.Text = "...";
             this.filePathText.TextChanged += new System.EventHandler(this.SetVariable);
@@ -301,7 +302,7 @@ namespace ShutdownAlarmApp
             // 
             this.executeSelectFileToPlay.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.executeSelectFileToPlay.BackColor = System.Drawing.Color.Transparent;
-            this.executeSelectFileToPlay.Location = new System.Drawing.Point(248, 74);
+            this.executeSelectFileToPlay.Location = new System.Drawing.Point(256, 63);
             this.executeSelectFileToPlay.Name = "executeSelectFileToPlay";
             this.executeSelectFileToPlay.Size = new System.Drawing.Size(121, 23);
             this.executeSelectFileToPlay.TabIndex = 1;
@@ -313,12 +314,13 @@ namespace ShutdownAlarmApp
             // 
             this.repeats.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.repeats.AutoSize = true;
-            this.repeats.Location = new System.Drawing.Point(128, 78);
+            this.repeats.Location = new System.Drawing.Point(175, 133);
             this.repeats.Name = "repeats";
-            this.repeats.Size = new System.Drawing.Size(72, 17);
+            this.repeats.Size = new System.Drawing.Size(67, 17);
             this.repeats.TabIndex = 0;
-            this.repeats.Text = "Repeats?";
+            this.repeats.Text = "Repeat?";
             this.repeats.UseVisualStyleBackColor = true;
+            this.repeats.CheckedChanged += new System.EventHandler(this.repeatsCheckedChanged);
             // 
             // closePanel
             // 
@@ -382,9 +384,9 @@ namespace ShutdownAlarmApp
             this.timePanel.Controls.Add(this.minutesFirst);
             this.timePanel.Controls.Add(this.AM);
             this.timePanel.Controls.Add(this.minutesSecond);
-            this.timePanel.Location = new System.Drawing.Point(0, 282);
+            this.timePanel.Location = new System.Drawing.Point(2, 108);
             this.timePanel.Name = "timePanel";
-            this.timePanel.Size = new System.Drawing.Size(396, 10);
+            this.timePanel.Size = new System.Drawing.Size(394, 187);
             this.timePanel.TabIndex = 8;
             // 
             // hoursPanel
@@ -392,47 +394,91 @@ namespace ShutdownAlarmApp
             this.hoursPanel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.hoursPanel.BackColor = System.Drawing.Color.Transparent;
+            this.hoursPanel.Controls.Add(this.minutesLabel);
+            this.hoursPanel.Controls.Add(this.label1);
+            this.hoursPanel.Controls.Add(this.hours);
+            this.hoursPanel.Controls.Add(this.minutes);
+            this.hoursPanel.Controls.Add(this.repeats);
             this.hoursPanel.Controls.Add(this.colon);
             this.hoursPanel.Controls.Add(this.minuteZero);
             this.hoursPanel.Controls.Add(this.hourZero);
-            this.hoursPanel.Controls.Add(this.hours);
-            this.hoursPanel.Controls.Add(this.minutes);
-            this.hoursPanel.Location = new System.Drawing.Point(0, 128);
+            this.hoursPanel.Location = new System.Drawing.Point(0, 118);
             this.hoursPanel.Name = "hoursPanel";
-            this.hoursPanel.Size = new System.Drawing.Size(396, 109);
+            this.hoursPanel.Size = new System.Drawing.Size(396, 161);
             this.hoursPanel.TabIndex = 9;
             this.hoursPanel.Visible = false;
             this.hoursPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.hoursPanel_Paint);
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(149, 38);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(35, 13);
+            this.label1.TabIndex = 10;
+            this.label1.Text = "Hours";
+            // 
             // hours
             // 
             this.hours.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.hours.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.hours.Location = new System.Drawing.Point(135, 48);
+            this.hours.Font = new System.Drawing.Font("Microsoft Sans Serif", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.hours.Location = new System.Drawing.Point(138, 55);
             this.hours.Margin = new System.Windows.Forms.Padding(0);
             this.hours.MaxLength = 2;
             this.hours.Name = "hours";
             this.hours.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.hours.Size = new System.Drawing.Size(59, 44);
+            this.hours.Size = new System.Drawing.Size(60, 62);
             this.hours.TabIndex = 5;
             this.hours.Text = "00";
-            this.hours.TextChanged += new System.EventHandler(this.time_textChanged);
             this.hours.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TimeCharCheck);
             // 
             // minutes
             // 
             this.minutes.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.minutes.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.minutes.Location = new System.Drawing.Point(215, 48);
+            this.minutes.Font = new System.Drawing.Font("Microsoft Sans Serif", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.minutes.Location = new System.Drawing.Point(215, 55);
             this.minutes.Margin = new System.Windows.Forms.Padding(0);
             this.minutes.MaxLength = 2;
             this.minutes.Name = "minutes";
             this.minutes.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.minutes.Size = new System.Drawing.Size(61, 44);
+            this.minutes.Size = new System.Drawing.Size(60, 62);
             this.minutes.TabIndex = 6;
             this.minutes.Text = "00";
-            this.minutes.TextChanged += new System.EventHandler(this.time_textChanged);
             this.minutes.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TimeCharCheck);
+            // 
+            // colon
+            // 
+            this.colon.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.colon.AutoSize = true;
+            this.colon.BackColor = System.Drawing.Color.Transparent;
+            this.colon.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.colon.Location = new System.Drawing.Point(194, 66);
+            this.colon.Name = "colon";
+            this.colon.Size = new System.Drawing.Size(27, 37);
+            this.colon.TabIndex = 9;
+            this.colon.Text = ":";
+            // 
+            // minuteZero
+            // 
+            this.minuteZero.AutoSize = true;
+            this.minuteZero.BackColor = System.Drawing.Color.Transparent;
+            this.minuteZero.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.minuteZero.Location = new System.Drawing.Point(212, 51);
+            this.minuteZero.Name = "minuteZero";
+            this.minuteZero.Size = new System.Drawing.Size(0, 37);
+            this.minuteZero.TabIndex = 8;
+            this.minuteZero.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // hourZero
+            // 
+            this.hourZero.AutoSize = true;
+            this.hourZero.BackColor = System.Drawing.Color.Transparent;
+            this.hourZero.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.hourZero.Location = new System.Drawing.Point(139, 51);
+            this.hourZero.Name = "hourZero";
+            this.hourZero.Size = new System.Drawing.Size(0, 37);
+            this.hourZero.TabIndex = 7;
+            this.hourZero.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // selectFileToPlay
             // 
@@ -469,10 +515,10 @@ namespace ShutdownAlarmApp
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.menu_panel.BackColor = System.Drawing.Color.Transparent;
+            this.menu_panel.Controls.Add(this.timePanel);
             this.menu_panel.Controls.Add(this.Submit);
             this.menu_panel.Controls.Add(this.countDownTimer);
             this.menu_panel.Controls.Add(this.hoursPanel);
-            this.menu_panel.Controls.Add(this.timePanel);
             this.menu_panel.Controls.Add(this.shutdown_panel);
             this.menu_panel.Controls.Add(this.alarm_panel);
             this.menu_panel.Location = new System.Drawing.Point(244, 20);
@@ -480,38 +526,14 @@ namespace ShutdownAlarmApp
             this.menu_panel.Size = new System.Drawing.Size(396, 472);
             this.menu_panel.TabIndex = 51;
             // 
-            // hourZero
+            // minutesLabel
             // 
-            this.hourZero.AutoSize = true;
-            this.hourZero.BackColor = System.Drawing.Color.Transparent;
-            this.hourZero.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.hourZero.Location = new System.Drawing.Point(139, 51);
-            this.hourZero.Name = "hourZero";
-            this.hourZero.Size = new System.Drawing.Size(0, 37);
-            this.hourZero.TabIndex = 7;
-            this.hourZero.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // minuteZero
-            // 
-            this.minuteZero.AutoSize = true;
-            this.minuteZero.BackColor = System.Drawing.Color.Transparent;
-            this.minuteZero.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.minuteZero.Location = new System.Drawing.Point(212, 51);
-            this.minuteZero.Name = "minuteZero";
-            this.minuteZero.Size = new System.Drawing.Size(0, 37);
-            this.minuteZero.TabIndex = 8;
-            this.minuteZero.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // colon
-            // 
-            this.colon.AutoSize = true;
-            this.colon.BackColor = System.Drawing.Color.Transparent;
-            this.colon.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.colon.Location = new System.Drawing.Point(197, 51);
-            this.colon.Name = "colon";
-            this.colon.Size = new System.Drawing.Size(27, 37);
-            this.colon.TabIndex = 9;
-            this.colon.Text = ":";
+            this.minutesLabel.AutoSize = true;
+            this.minutesLabel.Location = new System.Drawing.Point(223, 39);
+            this.minutesLabel.Name = "minutesLabel";
+            this.minutesLabel.Size = new System.Drawing.Size(44, 13);
+            this.minutesLabel.TabIndex = 11;
+            this.minutesLabel.Text = "Minutes";
             // 
             // ShutdownAlarm
             // 
@@ -586,6 +608,8 @@ namespace ShutdownAlarmApp
         private System.Windows.Forms.Label hourZero;
         private System.Windows.Forms.Label minuteZero;
         private System.Windows.Forms.Label colon;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label minutesLabel;
     }
 
 }

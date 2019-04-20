@@ -525,29 +525,15 @@ namespace ShutdownAlarmApp
 
         }
 
-        private void time_textChanged(object sender, EventArgs e)
+        private void repeatsCheckedChanged(object sender, EventArgs e)
         {
-            Control control = (Control)sender;
-            switch (control.Name)
+            if (this.repeats.Checked)
             {
-                case "minutes":
-                    if (control.Text.Length < 2)
-                    {
-                    }
-                    else
-                    {
-                    }
-                    break;
-                case "hours":
-                    if (control.Text.Length < 2)
-                    {
-                    }
-                    else
-                    {
-                    }
-                    break;
-                default:
-                    break;
+                this.repeats.Text = "Repeats";
+            }
+            else
+            {
+                this.repeats.Text = "Repeat?";
             }
         }
     }
