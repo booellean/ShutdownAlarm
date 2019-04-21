@@ -87,55 +87,83 @@ namespace ShutdownAlarmApp
             // 
             this.shutdown_button.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.shutdown_button.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(187)))), ((int)(((byte)(164)))));
+            this.shutdown_button.FlatAppearance.BorderSize = 0;
+            this.shutdown_button.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.shutdown_button.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.shutdown_button.Location = new System.Drawing.Point(12, 11);
             this.shutdown_button.Name = "shutdown_button";
+            this.shutdown_button.Padding = new System.Windows.Forms.Padding(15, 0, 0, 0);
             this.shutdown_button.Size = new System.Drawing.Size(205, 84);
             this.shutdown_button.TabIndex = 3;
+            this.shutdown_button.TabStop = false;
             this.shutdown_button.Text = "Shutdown";
-            this.shutdown_button.UseVisualStyleBackColor = true;
+            this.shutdown_button.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.shutdown_button.UseVisualStyleBackColor = false;
             this.shutdown_button.Click += new System.EventHandler(this.LoadShutdownInterface);
             // 
             // alarm_button
             // 
             this.alarm_button.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.alarm_button.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(187)))), ((int)(((byte)(164)))));
+            this.alarm_button.FlatAppearance.BorderSize = 0;
+            this.alarm_button.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.alarm_button.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.alarm_button.Location = new System.Drawing.Point(12, 110);
             this.alarm_button.Name = "alarm_button";
+            this.alarm_button.Padding = new System.Windows.Forms.Padding(15, 0, 0, 0);
             this.alarm_button.Size = new System.Drawing.Size(205, 84);
             this.alarm_button.TabIndex = 2;
+            this.alarm_button.TabStop = false;
             this.alarm_button.Text = "Alarm";
-            this.alarm_button.UseVisualStyleBackColor = true;
+            this.alarm_button.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.alarm_button.UseVisualStyleBackColor = false;
             this.alarm_button.Click += new System.EventHandler(this.LoadAlarmInterface);
             // 
             // hours_button
             // 
             this.hours_button.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.hours_button.Location = new System.Drawing.Point(12, 208);
+            this.hours_button.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(187)))), ((int)(((byte)(164)))));
+            this.hours_button.FlatAppearance.BorderSize = 0;
+            this.hours_button.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.hours_button.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.hours_button.Location = new System.Drawing.Point(12, 266);
             this.hours_button.Name = "hours_button";
+            this.hours_button.Padding = new System.Windows.Forms.Padding(15, 0, 0, 0);
             this.hours_button.Size = new System.Drawing.Size(141, 49);
             this.hours_button.TabIndex = 5;
+            this.hours_button.TabStop = false;
             this.hours_button.Text = "Hours";
-            this.hours_button.UseVisualStyleBackColor = true;
+            this.hours_button.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.hours_button.UseVisualStyleBackColor = false;
             this.hours_button.Click += new System.EventHandler(this.LoadHoursInterface);
             // 
             // time_button
             // 
             this.time_button.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.time_button.Location = new System.Drawing.Point(12, 274);
+            this.time_button.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(187)))), ((int)(((byte)(164)))));
+            this.time_button.FlatAppearance.BorderSize = 0;
+            this.time_button.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.time_button.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.time_button.Location = new System.Drawing.Point(12, 332);
             this.time_button.Name = "time_button";
+            this.time_button.Padding = new System.Windows.Forms.Padding(15, 0, 0, 0);
             this.time_button.Size = new System.Drawing.Size(141, 61);
             this.time_button.TabIndex = 4;
+            this.time_button.TabStop = false;
             this.time_button.Text = "Time";
-            this.time_button.UseVisualStyleBackColor = true;
+            this.time_button.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.time_button.UseVisualStyleBackColor = false;
             this.time_button.Click += new System.EventHandler(this.LoadTimeInterface);
             // 
             // shutdown_panel
             // 
             this.shutdown_panel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.shutdown_panel.BackColor = System.Drawing.Color.LightGreen;
+            this.shutdown_panel.BackColor = System.Drawing.Color.Transparent;
             this.shutdown_panel.Controls.Add(this.operations);
             this.shutdown_panel.Location = new System.Drawing.Point(0, 0);
             this.shutdown_panel.Name = "shutdown_panel";
@@ -268,13 +296,18 @@ namespace ShutdownAlarmApp
             // Submit
             // 
             this.Submit.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.Submit.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(187)))), ((int)(((byte)(164)))));
+            this.Submit.FlatAppearance.BorderSize = 0;
+            this.Submit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.Submit.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Submit.Location = new System.Drawing.Point(119, 389);
             this.Submit.Name = "Submit";
             this.Submit.Size = new System.Drawing.Size(182, 63);
             this.Submit.TabIndex = 10;
+            this.Submit.TabStop = false;
             this.Submit.Text = "Set";
             this.Submit.UseCompatibleTextRendering = true;
-            this.Submit.UseVisualStyleBackColor = true;
+            this.Submit.UseVisualStyleBackColor = false;
             this.Submit.Click += new System.EventHandler(this.Submit_Click);
             // 
             // container_panel
@@ -294,7 +327,7 @@ namespace ShutdownAlarmApp
             // 
             this.alarm_panel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.alarm_panel.BackColor = System.Drawing.Color.Maroon;
+            this.alarm_panel.BackColor = System.Drawing.Color.Transparent;
             this.alarm_panel.Controls.Add(this.filePathText);
             this.alarm_panel.Controls.Add(this.executeSelectFileToPlay);
             this.alarm_panel.Location = new System.Drawing.Point(0, 3);
@@ -316,14 +349,17 @@ namespace ShutdownAlarmApp
             // executeSelectFileToPlay
             // 
             this.executeSelectFileToPlay.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.executeSelectFileToPlay.BackColor = System.Drawing.Color.Transparent;
+            this.executeSelectFileToPlay.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(187)))), ((int)(((byte)(164)))));
+            this.executeSelectFileToPlay.FlatAppearance.BorderSize = 0;
+            this.executeSelectFileToPlay.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.executeSelectFileToPlay.Location = new System.Drawing.Point(256, 63);
             this.executeSelectFileToPlay.Name = "executeSelectFileToPlay";
             this.executeSelectFileToPlay.Size = new System.Drawing.Size(121, 23);
             this.executeSelectFileToPlay.TabIndex = 1;
+            this.executeSelectFileToPlay.TabStop = false;
             this.executeSelectFileToPlay.Text = "Browse...";
             this.executeSelectFileToPlay.UseVisualStyleBackColor = false;
-            this.executeSelectFileToPlay.Click += new System.EventHandler(this.InitiateFileSearch);
+            this.executeSelectFileToPlay.Click += new System.EventHandler(this.LoadAlarmInterface);
             // 
             // repeats
             // 
@@ -389,7 +425,7 @@ namespace ShutdownAlarmApp
             // 
             this.timePanel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.timePanel.BackColor = System.Drawing.Color.OrangeRed;
+            this.timePanel.BackColor = System.Drawing.Color.Transparent;
             this.timePanel.Controls.Add(this.dateTimePicker);
             this.timePanel.Controls.Add(this.hoursFirst);
             this.timePanel.Controls.Add(this.militaryTime);
@@ -579,10 +615,10 @@ namespace ShutdownAlarmApp
             this.menu_panel.BackColor = System.Drawing.Color.Transparent;
             this.menu_panel.Controls.Add(this.Submit);
             this.menu_panel.Controls.Add(this.countDownTimer);
-            this.menu_panel.Controls.Add(this.shutdown_panel);
             this.menu_panel.Controls.Add(this.alarm_panel);
             this.menu_panel.Controls.Add(this.timePanel);
             this.menu_panel.Controls.Add(this.hoursPanel);
+            this.menu_panel.Controls.Add(this.shutdown_panel);
             this.menu_panel.Location = new System.Drawing.Point(244, 20);
             this.menu_panel.Name = "menu_panel";
             this.menu_panel.Size = new System.Drawing.Size(396, 472);
@@ -593,7 +629,7 @@ namespace ShutdownAlarmApp
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(148)))), ((int)(((byte)(198)))));
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(223)))));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(652, 501);
             this.Controls.Add(this.menu_panel);
