@@ -11,7 +11,7 @@ This is a small test application which serves three purposes:
 
   1. To serve as an example of my current skillsets with C# and the .Net Framework.
   2. To further those skills in a practical development environment.
-  3. To create a functional shutdown/alarm timer that works optimally in a Windows environment (especially since the author could not find any Windows Applications with a UI that she preferred).
+  3. To create a functional shutdown/alarm timer that works optimally in a Windows environment (especially since the author could not find any Windows Applications with a UI that they preferred).
 
 #### ToDo:
 
