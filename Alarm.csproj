@@ -109,5 +109,17 @@
       <Install>false</Install>
     </BootstrapperPackage>
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\custom_icons_timer-02.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\custom_icons_timer-03.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\custom_icons_timer-01.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\timer-shutdown-icon.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

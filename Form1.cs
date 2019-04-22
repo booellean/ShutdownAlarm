@@ -16,13 +16,12 @@ namespace ShutdownAlarmApp
 {
     public partial class ShutdownAlarm : Form
     {
-        const int AMOUNT = 10;
+        const int AMOUNT = 5;
         private bool MAX = false;
         private bool initiate = false;
 
         //Time Input variables
         private bool miltime = true;
-        private bool timeInput = false;
         private string meridiem = "AM";
 
         //Variables for Countdown effect
@@ -504,11 +503,14 @@ namespace ShutdownAlarmApp
         private void ConvertToPolygon(object sender, PaintEventArgs e)
         {
             float topWidth = Convert.ToSingle(System.Math.Floor( this.Width * .33 ));
-            float bottomWidth = Convert.ToSingle(System.Math.Floor( this.Width * .4 ));
+            // Changing to a more... dynamic border?
+            float bottomWidth = Convert.ToSingle(System.Math.Floor( this.Width * .6 ));
+            //float bottomWidth = this.Width;
             Graphics g = this.CreateGraphics();
-            Pen pen = new Pen(Color.Black);
-            Brush brush = new SolidBrush(Color.FromArgb(255, 255, 0));
-            PointF[] ptr = { new PointF(0,0), new PointF(topWidth,0), new PointF(bottomWidth, this.Height), new PointF(0, this.Height) };
+            Pen pen = new Pen(Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(187)))), ((int)(((byte)(164))))));
+            Brush brush = new SolidBrush(Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(187)))), ((int)(((byte)(164))))));
+            //PointF[] ptr = { new PointF(0,0), new PointF(topWidth,0), new PointF(bottomWidth, this.Height), new PointF(0, this.Height) };
+            PointF[] ptr = { new PointF(bottomWidth, 0), new PointF(this.Width, 0), new PointF(this.Width, this.Height), new PointF(topWidth, this.Height) };
 
             g.SmoothingMode = SmoothingMode.AntiAlias;
             g.FillPolygon(brush, ptr);
